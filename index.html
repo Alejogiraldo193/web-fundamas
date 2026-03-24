@@ -221,7 +221,7 @@
     ══════════════════════════════════════════ */
     .section-wrapper {
       max-width: var(--max-w); margin: 0 auto;
-      padding: 100px 40px;
+      padding: 45px 10px;
     }
     .section-tag {
       font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
@@ -848,15 +848,10 @@
   </section>
 
   <!-- ═══ PROGRAMAS – Estilo zigzag ═══ -->
-  <section class="programas-section" id="programas">
-    <div class="section-wrapper" style="padding-bottom: 40px; text-align: center;">
-      <div class="section-tag">Lo que hacemos</div>
-      <div class="section-title">Nuestros <em>programas</em></div>
-      <p class="section-desc">
-        Cada programa nace de una necesidad real. Trabajamos directamente con las
-        comunidades para generar impacto medible y sostenible.
-      </p>
-    </div>
+  <section class="programas-section" id="programas" style="margin-top: -8px;">
+    <div class="section-wrapper" style="padding-bottom: 12px; text-align: center;">
+  <div class="section-title" style="font-weight: 900;">Nuestros programas</div>
+</div>
 
     <!-- Programa 1: Brigadas Integrales -->
     <div class="programa-row bg-white" onclick="showPage('prog-brigadas')">
@@ -977,6 +972,36 @@
         </span>
       </div>
     </div>
+
+    <!-- Programa 8: Escuela de Liderazgo -->
+    <div class="programa-row reverse bg-light" onclick="showPage('prog-escuela')">
+      <div class="programa-img">
+        <img src="img/escuela-liderazgo.jpg" alt="Escuela de Liderazgo"
+             onerror="this.style.background='var(--rojo)'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">400</div>
+        <h3>Escuela de Liderazgo Social</h3>
+        <p>Formación integral para voluntarios y líderes comunitarios. Cursos, diplomados, seminarios y semilleros diseñados para fortalecer competencias de impacto social. 2.723 asistencias, 49 temas, 4 seminarios y 2 diplomados.</p>
+      </div>
+    </div>
+<!-- ═══ LOGOS DE PROGRAMAS ═══ -->
+  <section style="background: var(--blanco); padding: 60px 0;">
+    <div style="max-width: var(--max-w); margin: 0 auto; padding: 0 40px; text-align: center;">
+      <h2 style="font-family: var(--font-display); font-size: 28px; font-weight: 900; color: #0e0d0d; margin-bottom: 12px;">Nuestros programas</h2>
+      <p style="font-size: 16px; color: rgba(36, 34, 34, 0.6); margin-bottom: 50px;">8 programas que transforman comunidades a través de la acción solidaria.</p>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 45px; flex-wrap: wrap;">
+        <img src="img/logo-brigadas.png" alt="Brigadas" style="height: 70px; width: auto;">
+        <img src="img/logo-animal.png" alt="Protección Animal" style="height: 70px; width: auto;">
+        <img src="img/logo-late.png" alt="LATE" style="height: 70px; width: auto;">
+        <img src="img/logo-comunarte.png" alt="ComunArte" style="height: 70px; width: auto;">
+        <img src="img/logo-mercaton.png" alt="Mercatón" style="height: 70px; width: auto;">
+        <img src="img/logo-acciones.png" alt="Acciones Solidarias" style="height: 70px; width: auto;">
+        <img src="img/logo-semillero.png" alt="Semillero" style="height: 70px; width: auto;">
+        <img src="img/logo-escuela.png" alt="Escuela de Liderazgo" style="height: 70px; width: auto;">
+      </div>
+    </div>
+  </section>
 
     <!-- ═══ ESCUELA DE FORMACIÓN – 4 cuadros ═══ -->
   <section class="escuela-section">
