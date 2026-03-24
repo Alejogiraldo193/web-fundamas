@@ -6,7 +6,7 @@
   <title>FUNDAMAS – Fundación Amigos Solidarios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <style>
     /* ══════════════════════════════════════════
        VARIABLES & RESET
@@ -21,8 +21,8 @@
       --gris-borde: #E2E2E2;
       --gris-texto: #6B6B6B;
       --negro: #1A1A1A;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-body: 'Source Sans 3', 'Helvetica Neue', sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
       --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
       --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
       --shadow-lg: 0 20px 60px rgba(0,0,0,0.14);
@@ -70,7 +70,7 @@
     /* Logo centrado */
     .nav-logo {
       position: absolute; left: 50%; transform: translateX(-50%);
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 12px;
       cursor: pointer;
     }
     .nav-logo-img {
@@ -80,7 +80,7 @@
     .nav-logo-text-badge {
       background: var(--rojo); color: #fff;
       font-family: var(--font-display); font-weight: 900;
-      font-size: 12px; padding: 8px 10px; border-radius: 6px;
+      font-size: 15px; padding: 8px 10px; border-radius: 6px;
       line-height: 1.1; text-align: center; letter-spacing: 0.03em;
     }
 
@@ -151,7 +151,7 @@
     ══════════════════════════════════════════ */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 75vh;
       display: flex; align-items: center; justify-content: center;
       text-align: center;
       background: var(--negro);
@@ -162,7 +162,7 @@
       position: absolute; inset: 0;
       background-image: url('img/hero-principal.jpg');
       background-size: cover; background-position: center;
-      opacity: 0.45;
+      opacity: 0.65;
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -178,27 +178,31 @@
       margin-bottom: 24px;
     }
     .hero h1 {
-      font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px);
-      font-weight: 700; color: #fff; line-height: 1.15;
-      margin-bottom: 20px;
-    }
+  font-family: var(--font-display); font-size: clamp(40px, 6vw, 80px);
+  font-weight: 800; color: #fff; line-height: 0.8;
+  margin-bottom: 33px; letter-spacing: 0.02em;
+}
     .hero h1 em {
       font-style: italic; color: var(--rojo-claro);
     }
     .hero-desc {
-      font-size: 18px; color: rgba(255,255,255,0.8);
-      max-width: 600px; margin: 0 auto 40px; line-height: 1.7;
+      font-size: 30px; color: rgba(255, 255, 255, 1);
+      max-width: 600px; margin: 0 auto 35px; line-height: 1.2;
       font-weight: 300;
     }
     .hero-ctas {
       display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      margin-top: -10px;
     }
     .btn-hero {
-      padding: 14px 32px; font-family: var(--font-body);
-      font-size: 14px; font-weight: 600; letter-spacing: 0.05em;
-      text-transform: uppercase; cursor: pointer;
-      transition: all var(--transition); border: none;
-    }
+  padding: 12px 24px; font-family: var(--font-body);
+  font-size: 14px; font-weight: 650; letter-spacing: 0.05em;
+  text-transform: uppercase; cursor: pointer;
+  transition: all var(--transition); border: none;
+  border-radius: 80px;
+  display: inline-flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
     .btn-hero-primary {
       background: var(--rojo); color: #fff;
     }
@@ -789,7 +793,7 @@
       <div class="nav-logo" onclick="showLanding()">
         <!-- Si tienes el logo como imagen, usa: -->
         <!-- <img class="nav-logo-img" src="img/logo-fundamas.png" alt="FUNDAMAS"> -->
-        <div class="nav-logo-text-badge">FUNDA<br>MÁS</div>
+        <img class="nav-logo-img" src="img/logo-fundamas.png" alt="FUNDAMAS">
       </div>
 
       <!-- Menú derecha -->
@@ -831,12 +835,9 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-tag">Fundación Amigos Solidarios · Desde 2013</div>
-      <h1>Juntos <em>somos más</em><br>que uno</h1>
+          <h1>Juntos, somos más <br>que uno</h1>
       <p class="hero-desc">
-        Sumamos la voluntad de profesionales, líderes comunitarios, estudiantes y
-        comunidad en general para consolidar un voluntariado de alto impacto que
-        transforme realidades.
+        Sumamos voluntades, <br>transformamos realidades
       </p>
       <div class="hero-ctas">
         <a class="btn-hero btn-hero-primary" href="#" onclick="showPage('voluntario'); return false;">Súmate como voluntario</a>
