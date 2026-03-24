@@ -178,9 +178,9 @@
       margin-bottom: 24px;
     }
     .hero h1 {
-  font-family: var(--font-display); font-size: clamp(40px, 6vw, 80px);
+  font-family: var(--font-display); font-size: clamp(40px, 6vw, 78px);
   font-weight: 800; color: #fff; line-height: 0.8;
-  margin-bottom: 33px; letter-spacing: 0.02em;
+  margin-bottom: 35px; letter-spacing: 0.02em;
 }
     .hero h1 em {
       font-style: italic; color: var(--rojo-claro);
@@ -245,18 +245,23 @@
     /* ══════════════════════════════════════════
        PROGRAMAS – Estilo zigzag (100% profits)
     ══════════════════════════════════════════ */
-    .programas-section { background: var(--blanco); }
+    .programas-section { background: var(--gris-fondo); padding-bottom: 80px; }
 
     .programa-row {
       display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 500px; cursor: pointer;
-      transition: opacity 0.3s;
+      max-width: 1200px; margin: 0 auto 20px;
+      border-radius: 20px; overflow: hidden;
+      background: #fff; cursor: pointer;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .programa-row:hover { opacity: 0.95; }
+    .programa-row:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(0,0,0,0.12); }
 
-    .programa-img {
-      overflow: hidden;
-    }
+    .programa-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease;
+  max-height: 400px;
+}
     .programa-img img {
       width: 100%; height: 100%; object-fit: cover;
       transition: transform 0.6s ease;
@@ -265,26 +270,22 @@
 
     .programa-text {
       display: flex; flex-direction: column; justify-content: center;
-      padding: 60px 70px;
+      padding: 40px 45px;
     }
     .programa-text .programa-number {
-      font-family: var(--font-display); font-size: 56px; font-weight: 800;
-      color: var(--rojo); line-height: 1; margin-bottom: 8px;
+      display: none;
     }
     .programa-text h3 {
-      font-family: var(--font-display); font-size: 28px; font-weight: 700;
-      margin-bottom: 16px; line-height: 1.3;
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      margin-bottom: 14px; line-height: 1.3; color: var(--rojo);
     }
     .programa-text p {
-      font-size: 16px; color: var(--gris-texto); line-height: 1.8;
-      margin-bottom: 24px; font-weight: 300;
+      font-size: 15px; color: var(--gris-texto); line-height: 1.8;
+      margin-bottom: 20px; font-weight: 400;
     }
     .programa-link {
-      font-size: 13px; font-weight: 600; color: var(--rojo);
-      letter-spacing: 0.08em; text-transform: uppercase;
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: gap var(--transition);
-    }
+  display: none;
+}
     .programa-link:hover { gap: 14px; }
     .programa-link svg {
       width: 16px; height: 16px; stroke: currentColor; fill: none;
@@ -296,8 +297,8 @@
     .programa-row.reverse .programa-text { order: 1; }
 
     /* Fondos alternos */
-    .programa-row.bg-light { background: var(--gris-fondo); }
-    .programa-row.bg-white { background: var(--blanco); }
+    .programa-row.bg-light { background: #fff; }
+    .programa-row.bg-white { background: #fff; }
 
     /* ══════════════════════════════════════════
        ESCUELA – Estilo 4 cuadros (B Corp)
@@ -835,7 +836,7 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-          <h1>Juntos, somos más <br>que uno</h1>
+          <h1>Juntos, somos más <br>que uno </h1>
       <p class="hero-desc">
         Sumamos voluntades, <br>transformamos realidades
       </p>
@@ -848,7 +849,7 @@
 
   <!-- ═══ PROGRAMAS – Estilo zigzag ═══ -->
   <section class="programas-section" id="programas">
-    <div class="section-wrapper" style="padding-bottom: 40px;">
+    <div class="section-wrapper" style="padding-bottom: 40px; text-align: center;">
       <div class="section-tag">Lo que hacemos</div>
       <div class="section-title">Nuestros <em>programas</em></div>
       <p class="section-desc">
@@ -977,25 +978,7 @@
       </div>
     </div>
 
-    <!-- Programa 8: Padrinos de la Navidad -->
-    <div class="programa-row reverse bg-light" onclick="showPage('prog-padrinos')">
-      <div class="programa-img">
-        <img src="img/padrinos.jpg" alt="Padrinos de la Navidad"
-             onerror="this.style.background='#9D174D'; this.style.minHeight='400px';">
-      </div>
-      <div class="programa-text">
-        <div class="programa-number">427</div>
-        <h3>Padrinos de la Navidad</h3>
-        <p>Atención a niños entre 1 y 12 años en situación de vulnerabilidad. 512 juguetes entregados, 854 prendas de vestir y 427 niños apadrinados con amor y esperanza.</p>
-        <span class="programa-link">
-          Conocer más
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ ESCUELA DE FORMACIÓN – 4 cuadros ═══ -->
+    <!-- ═══ ESCUELA DE FORMACIÓN – 4 cuadros ═══ -->
   <section class="escuela-section">
     <div class="escuela-inner">
       <div class="escuela-header">
