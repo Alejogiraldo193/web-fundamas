@@ -6,111 +6,114 @@
   <title>FUNDAMAS – Fundación Amigos Solidarios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
+    /* ══════════════════════════════════════════
+       VARIABLES & RESET
+    ══════════════════════════════════════════ */
     :root {
-      --rojo: #C1203B;
+      --rojo: #C41E3A;
       --rojo-oscuro: #8B1528;
       --rojo-claro: #E8395A;
       --rojo-suave: #F5D0D8;
       --blanco: #FFFFFF;
-      --gris-fondo: #F6F6F6;
+      --gris-fondo: #F7F7F5;
       --gris-borde: #E2E2E2;
-      --gris-texto: #5A5A5A;
+      --gris-texto: #6B6B6B;
       --negro: #1A1A1A;
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
-      --shadow-sm: 0 2px 8px rgba(193,32,59,0.08);
-      --shadow-md: 0 8px 32px rgba(193,32,59,0.12);
-      --shadow-lg: 0 20px 60px rgba(193,32,59,0.18);
-      --r: 12px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Sans 3', 'Helvetica Neue', sans-serif;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.14);
+      --r: 0px;
+      --max-w: 1200px;
+      --transition: 0.3s ease;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-body);
-      background: var(--gris-fondo);
+      background: var(--blanco);
       color: var(--negro);
-      line-height: 1.6;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-thumb { background: var(--rojo); border-radius: 10px; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: var(--rojo); }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
 
     /* ══════════════════════════════════════════
-       NAVBAR
+       NAVBAR – Logo centrado, menú a la derecha
     ══════════════════════════════════════════ */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--gris-borde);
-      transition: box-shadow 0.3s;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow var(--transition);
     }
-    .navbar.scrolled { box-shadow: var(--shadow-md); }
+    .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
 
     .nav-inner {
-      max-width: 1240px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 32px; height: 72px;
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center;
+      padding: 0 40px; height: 70px;
+      position: relative;
     }
 
+    /* Logo centrado */
     .nav-logo {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none;
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 10px;
+      cursor: pointer;
     }
     .nav-logo-img {
-      width: 48px; height: 48px; object-fit: contain;
-      border-radius: 8px;
-      background: var(--rojo);
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-family: var(--font-display); font-weight: 900;
-      font-size: 14px; letter-spacing: 0.02em; text-align: center;
-      line-height: 1.2; padding: 4px;
+      height: 44px; width: auto;
     }
-    .nav-logo-text { display: flex; flex-direction: column; }
-    .nav-logo-title {
-      font-family: var(--font-display); font-weight: 700; font-size: 18px;
-      color: var(--rojo); letter-spacing: -0.01em;
-    }
-    .nav-logo-sub {
-      font-size: 10px; font-weight: 500; color: var(--gris-texto);
-      letter-spacing: 0.06em; text-transform: uppercase;
+    /* Fallback si no hay imagen */
+    .nav-logo-text-badge {
+      background: var(--rojo); color: #fff;
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 12px; padding: 8px 10px; border-radius: 6px;
+      line-height: 1.1; text-align: center; letter-spacing: 0.03em;
     }
 
+    /* Links a la derecha */
     .nav-links {
-      display: flex; align-items: center; gap: 4px; list-style: none;
+      display: flex; align-items: center; gap: 2px;
+      list-style: none; margin-left: auto;
     }
 
     .nav-item { position: relative; }
 
     .nav-btn {
       background: none; border: none; cursor: pointer;
-      font-family: var(--font-body); font-size: 14px; font-weight: 500;
-      color: var(--negro); padding: 8px 14px; border-radius: 8px;
+      font-family: var(--font-body); font-size: 13.5px; font-weight: 500;
+      color: var(--negro); padding: 10px 16px;
       display: flex; align-items: center; gap: 5px;
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
+      transition: color var(--transition);
+      white-space: nowrap; letter-spacing: 0.02em;
     }
-    .nav-btn:hover { background: var(--rojo-suave); color: var(--rojo); }
+    .nav-btn:hover { color: var(--rojo); }
     .nav-btn .chevron {
-      width: 14px; height: 14px; stroke: currentColor; fill: none;
-      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      width: 12px; height: 12px; stroke: currentColor; fill: none;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
       transition: transform 0.25s;
     }
     .nav-item:hover .chevron { transform: rotate(180deg); }
 
     .dropdown {
-      position: absolute; top: calc(100% + 8px); left: 0;
-      background: #fff; border: 1px solid var(--gris-borde);
-      border-radius: var(--r); box-shadow: var(--shadow-lg);
-      min-width: 220px; padding: 8px;
-      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      position: absolute; top: calc(100% + 6px); left: 0;
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: var(--shadow-lg);
+      min-width: 240px; padding: 8px;
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
       transition: all 0.22s ease;
       pointer-events: none;
     }
@@ -119,892 +122,976 @@
       pointer-events: all;
     }
     .dropdown a {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px; border-radius: 8px;
-      text-decoration: none; font-size: 13.5px; font-weight: 500; color: var(--negro);
-      transition: background 0.15s;
+      display: block; padding: 12px 16px;
+      font-size: 13px; font-weight: 500; color: var(--negro);
+      transition: all 0.15s; letter-spacing: 0.01em;
     }
-    .dropdown a:hover { background: var(--rojo-suave); color: var(--rojo); }
-    .dropdown a .icon {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: var(--rojo-suave); display: flex; align-items: center;
-      justify-content: center; flex-shrink: 0; font-size: 15px;
-    }
+    .dropdown a:hover { background: var(--gris-fondo); color: var(--rojo); }
 
     .nav-escuela {
       background: var(--rojo); color: #fff !important;
-      padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
-      text-decoration: none; transition: background 0.2s, transform 0.15s;
-      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 22px; font-size: 13px; font-weight: 600;
+      transition: background var(--transition);
+      display: inline-flex; align-items: center; letter-spacing: 0.03em;
     }
-    .nav-escuela:hover { background: var(--rojo-oscuro); transform: translateY(-1px); }
+    .nav-escuela:hover { background: var(--rojo-oscuro); }
+
+    /* Hamburger mobile */
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      margin-left: auto; padding: 8px;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px; background: var(--negro);
+      margin: 5px 0; transition: all 0.3s;
+    }
 
     /* ══════════════════════════════════════════
-       HERO
+       HERO – Full width image + texto
     ══════════════════════════════════════════ */
     .hero {
-      padding-top: 72px; min-height: 100vh;
-      display: flex; align-items: center;
-      background: linear-gradient(135deg, #fff 0%, var(--rojo-suave) 40%, #fff 100%);
-      position: relative; overflow: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      background: var(--negro);
+      overflow: hidden;
+      margin-top: 70px;
     }
-
-    .hero-shapes {
-      position: absolute; inset: 0; pointer-events: none;
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('img/hero-principal.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.45;
     }
-    .hero-circle-1 {
-      position: absolute; right: -120px; top: 10%;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(193,32,59,0.12) 0%, transparent 70%);
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5) 100%);
     }
-    .hero-circle-2 {
-      position: absolute; left: -80px; bottom: 5%;
-      width: 350px; height: 350px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(193,32,59,0.07) 0%, transparent 70%);
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 800px; padding: 80px 40px;
     }
-    .hero-line {
-      position: absolute; right: 15%; top: 0; bottom: 0; width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(193,32,59,0.15), transparent);
-    }
-
-    .hero-inner {
-      max-width: 1240px; margin: 0 auto; padding: 80px 32px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-      position: relative; z-index: 1;
-    }
-
     .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--rojo-suave); color: var(--rojo);
-      padding: 6px 14px; border-radius: 20px;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; margin-bottom: 20px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,0.7);
+      margin-bottom: 24px;
     }
-    .hero-tag-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--rojo); animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.6; }
-    }
-
     .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4.5vw, 58px);
-      font-weight: 900; line-height: 1.1;
-      color: var(--negro); letter-spacing: -0.03em;
+      font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700; color: #fff; line-height: 1.15;
       margin-bottom: 20px;
     }
     .hero h1 em {
-      font-style: italic; color: var(--rojo);
+      font-style: italic; color: var(--rojo-claro);
+    }
+    .hero-desc {
+      font-size: 18px; color: rgba(255,255,255,0.8);
+      max-width: 600px; margin: 0 auto 40px; line-height: 1.7;
       font-weight: 300;
     }
-
-    .hero-desc {
-      font-size: 17px; color: var(--gris-texto); line-height: 1.7;
-      margin-bottom: 36px; max-width: 480px;
+    .hero-ctas {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
     }
-
-    .hero-actions {
-      display: flex; gap: 14px; flex-wrap: wrap;
+    .btn-hero {
+      padding: 14px 32px; font-family: var(--font-body);
+      font-size: 14px; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; cursor: pointer;
+      transition: all var(--transition); border: none;
     }
-
-    .btn-primary {
+    .btn-hero-primary {
       background: var(--rojo); color: #fff;
-      padding: 14px 28px; border-radius: 10px;
-      font-size: 15px; font-weight: 600;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-body);
     }
-    .btn-primary:hover { background: var(--rojo-oscuro); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-
-    .btn-outline {
-      background: transparent; color: var(--rojo);
-      padding: 14px 28px; border-radius: 10px;
-      font-size: 15px; font-weight: 600;
-      text-decoration: none; border: 2px solid var(--rojo); cursor: pointer;
-      transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-body);
+    .btn-hero-primary:hover { background: var(--rojo-oscuro); }
+    .btn-hero-outline {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.5);
     }
-    .btn-outline:hover { background: var(--rojo-suave); transform: translateY(-2px); }
-
-    .hero-stats {
-      display: flex; gap: 32px; margin-top: 48px; padding-top: 32px;
-      border-top: 1px solid var(--gris-borde);
+    .btn-hero-outline:hover {
+      background: #fff; color: var(--negro);
+      border-color: #fff;
     }
-    .hero-stat-num {
-      font-family: var(--font-display); font-size: 32px; font-weight: 900;
-      color: var(--rojo); line-height: 1;
-    }
-    .hero-stat-label { font-size: 12px; color: var(--gris-texto); font-weight: 500; margin-top: 4px; }
-
-    /* Hero visual */
-    .hero-visual {
-      position: relative;
-    }
-    .hero-card-main {
-      background: #fff; border-radius: 20px; padding: 28px;
-      box-shadow: var(--shadow-lg); position: relative;
-    }
-    .hero-card-badge {
-      position: absolute; top: -14px; right: 20px;
-      background: var(--rojo); color: #fff;
-      padding: 6px 16px; border-radius: 20px;
-      font-size: 12px; font-weight: 600;
-    }
-    .hero-card-title {
-      font-family: var(--font-display); font-size: 20px; font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .hero-card-sub { font-size: 13px; color: var(--gris-texto); margin-bottom: 20px; }
-
-    .course-mini-list { display: flex; flex-direction: column; gap: 10px; }
-    .course-mini-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 12px 14px; border-radius: 10px; background: var(--gris-fondo);
-      cursor: pointer; transition: background 0.15s;
-    }
-    .course-mini-item:hover { background: var(--rojo-suave); }
-    .course-mini-icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
-    }
-    .course-mini-name { font-size: 13px; font-weight: 600; flex: 1; }
-    .course-mini-tag {
-      font-size: 10px; font-weight: 600; padding: 3px 8px;
-      border-radius: 6px; background: var(--rojo-suave); color: var(--rojo);
-    }
-
-    .hero-float-card {
-      position: absolute; bottom: -20px; left: -30px;
-      background: var(--rojo); color: #fff;
-      padding: 16px 20px; border-radius: 14px;
-      box-shadow: var(--shadow-lg);
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .float-num { font-family: var(--font-display); font-size: 28px; font-weight: 900; }
-    .float-label { font-size: 11px; opacity: 0.85; font-weight: 500; }
 
     /* ══════════════════════════════════════════
-       SECTIONS COMUNES
+       SECCIÓN GENÉRICA
     ══════════════════════════════════════════ */
-    .section {
-      padding: 96px 32px;
-      max-width: 1240px; margin: 0 auto;
+    .section-wrapper {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 100px 40px;
     }
-
     .section-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      color: var(--rojo); font-size: 12px; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--rojo);
+      margin-bottom: 16px;
     }
-    .section-tag::before {
-      content: ''; width: 20px; height: 2px; background: var(--rojo); border-radius: 2px;
-    }
-
     .section-title {
       font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 900; line-height: 1.15; letter-spacing: -0.02em;
-      color: var(--negro); margin-bottom: 16px;
+      font-weight: 700; line-height: 1.2; margin-bottom: 20px;
+      color: var(--negro);
     }
-    .section-title em { font-style: italic; color: var(--rojo); font-weight: 300; }
-
-    .section-desc { font-size: 17px; color: var(--gris-texto); max-width: 560px; line-height: 1.7; }
+    .section-title em { font-style: italic; }
+    .section-desc {
+      font-size: 17px; color: var(--gris-texto); max-width: 640px;
+      line-height: 1.8; font-weight: 300;
+    }
+    .section-desc-center {
+      text-align: center; margin: 0 auto;
+    }
 
     /* ══════════════════════════════════════════
-       PROGRAMAS
+       PROGRAMAS – Estilo zigzag (100% profits)
     ══════════════════════════════════════════ */
-    .programas-bg {
-      background: #fff;
+    .programas-section { background: var(--blanco); }
+
+    .programa-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 500px; cursor: pointer;
+      transition: opacity 0.3s;
     }
-    .programas-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+    .programa-row:hover { opacity: 0.95; }
+
+    .programa-img {
+      overflow: hidden;
     }
-    .programa-card {
-      border: 1px solid var(--gris-borde); border-radius: 16px;
-      padding: 28px; background: #fff;
-      transition: all 0.25s; cursor: default;
-      position: relative; overflow: hidden;
+    .programa-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
     }
-    .programa-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      background: var(--rojo); transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s;
+    .programa-row:hover .programa-img img { transform: scale(1.03); }
+
+    .programa-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 60px 70px;
     }
-    .programa-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--rojo-suave); }
-    .programa-card:hover::before { transform: scaleX(1); }
-    .programa-ico { font-size: 36px; margin-bottom: 16px; }
-    .programa-nombre {
+    .programa-text .programa-number {
+      font-family: var(--font-display); font-size: 56px; font-weight: 800;
+      color: var(--rojo); line-height: 1; margin-bottom: 8px;
+    }
+    .programa-text h3 {
+      font-family: var(--font-display); font-size: 28px; font-weight: 700;
+      margin-bottom: 16px; line-height: 1.3;
+    }
+    .programa-text p {
+      font-size: 16px; color: var(--gris-texto); line-height: 1.8;
+      margin-bottom: 24px; font-weight: 300;
+    }
+    .programa-link {
+      font-size: 13px; font-weight: 600; color: var(--rojo);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: gap var(--transition);
+    }
+    .programa-link:hover { gap: 14px; }
+    .programa-link svg {
+      width: 16px; height: 16px; stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* Alternar orden */
+    .programa-row.reverse .programa-img { order: 2; }
+    .programa-row.reverse .programa-text { order: 1; }
+
+    /* Fondos alternos */
+    .programa-row.bg-light { background: var(--gris-fondo); }
+    .programa-row.bg-white { background: var(--blanco); }
+
+    /* ══════════════════════════════════════════
+       ESCUELA – Estilo 4 cuadros (B Corp)
+    ══════════════════════════════════════════ */
+    .escuela-section {
+      background: var(--negro);
+      color: #fff;
+      padding: 100px 0;
+    }
+    .escuela-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 40px;
+    }
+    .escuela-header {
+      text-align: center; margin-bottom: 60px;
+    }
+    .escuela-header .section-tag { color: var(--rojo-claro); }
+    .escuela-header .section-title { color: #fff; }
+    .escuela-header .section-desc { color: rgba(255,255,255,0.6); }
+
+    .escuela-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid rgba(255,255,255,0.12);
+    }
+    .escuela-card {
+      padding: 40px 30px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+      transition: background var(--transition);
+      cursor: pointer; position: relative;
+    }
+    .escuela-card:last-child { border-right: none; }
+    .escuela-card:hover { background: rgba(255,255,255,0.04); }
+
+    .escuela-card-icon {
+      width: 48px; height: 48px; margin-bottom: 20px;
+      background: var(--rojo); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .escuela-card h4 {
       font-family: var(--font-display); font-size: 20px; font-weight: 700;
-      margin-bottom: 10px; color: var(--negro);
+      margin-bottom: 12px; line-height: 1.3;
     }
-    .programa-desc { font-size: 14px; color: var(--gris-texto); line-height: 1.65; }
+    .escuela-card p {
+      font-size: 14px; color: rgba(255,255,255,0.55);
+      line-height: 1.7; margin-bottom: 20px;
+    }
+    .escuela-card-link {
+      font-size: 12px; font-weight: 600; color: var(--rojo-claro);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap var(--transition);
+    }
+    .escuela-card-link:hover { gap: 12px; }
 
     /* ══════════════════════════════════════════
-       ESCUELA CTA SECTION
+       COLABORADORES – Logos
     ══════════════════════════════════════════ */
-    .escuela-cta {
-      background: linear-gradient(135deg, var(--rojo-oscuro) 0%, var(--rojo) 50%, var(--rojo-claro) 100%);
-      border-radius: 24px; padding: 64px 56px;
-      display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
-      position: relative; overflow: hidden; margin: 0 32px;
+    .colaboradores-section {
+      background: var(--gris-fondo);
+      padding: 80px 0;
     }
-    .escuela-cta-circles {
-      position: absolute; inset: 0; pointer-events: none;
+    .colaboradores-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 40px;
+      text-align: center;
     }
-    .escuela-cta-circles::before {
-      content: ''; position: absolute; right: -80px; top: -80px;
-      width: 320px; height: 320px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.15);
+    .colaboradores-inner .section-title {
+      margin-bottom: 12px;
     }
-    .escuela-cta-circles::after {
-      content: ''; position: absolute; right: -20px; top: -20px;
-      width: 200px; height: 200px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.1);
+    .colaboradores-inner .section-desc {
+      margin-bottom: 50px;
     }
-    .escuela-cta-label {
-      color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;
+    .colaboradores-logos {
+      display: flex; align-items: center; justify-content: center;
+      gap: 50px; flex-wrap: wrap;
     }
-    .escuela-cta h2 {
-      font-family: var(--font-display); font-size: clamp(26px, 3vw, 40px);
-      font-weight: 900; color: #fff; line-height: 1.15; letter-spacing: -0.02em;
-      margin-bottom: 14px;
+    .colab-logo {
+      height: 50px; width: auto; opacity: 0.45;
+      filter: grayscale(100%);
+      transition: all var(--transition);
     }
-    .escuela-cta p { color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.7; }
-    .btn-white {
-      background: #fff; color: var(--rojo);
-      padding: 16px 32px; border-radius: 10px;
-      font-size: 15px; font-weight: 700;
-      text-decoration: none; white-space: nowrap;
-      transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-body);
+    .colab-logo:hover { opacity: 1; filter: grayscale(0%); }
+
+    /* Placeholder logos (texto) */
+    .colab-placeholder {
+      display: flex; align-items: center; justify-content: center;
+      height: 50px; padding: 0 24px;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      font-size: 13px; font-weight: 600; color: var(--gris-texto);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      opacity: 0.5; transition: all var(--transition);
     }
-    .btn-white:hover { transform: scale(1.03); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+    .colab-placeholder:hover { opacity: 1; border-color: var(--rojo); color: var(--rojo); }
 
     /* ══════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════ */
     .footer {
-      background: var(--negro); color: rgba(255,255,255,0.6);
-      padding: 56px 32px 32px;
-      margin-top: 80px;
+      background: var(--negro); color: rgba(255,255,255,0.5);
+      padding: 70px 0 30px;
     }
     .footer-inner {
-      max-width: 1240px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      max-width: var(--max-w); margin: 0 auto; padding: 0 40px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
     }
     .footer-brand-name {
-      font-family: var(--font-display); font-size: 22px;
-      font-weight: 900; color: #fff; margin-bottom: 8px;
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      color: #fff; margin-bottom: 4px;
     }
-    .footer-brand-sub { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
-    .footer-desc { font-size: 13.5px; line-height: 1.7; max-width: 260px; }
+    .footer-brand-sub {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); margin-bottom: 14px;
+    }
+    .footer-desc {
+      font-size: 14px; line-height: 1.7; max-width: 320px;
+    }
     .footer-col-title {
-      font-size: 13px; font-weight: 700; color: #fff;
-      letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      margin-bottom: 16px;
     }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 8px; }
     .footer-links a {
-      font-size: 13.5px; color: rgba(255,255,255,0.5);
-      text-decoration: none; transition: color 0.2s;
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      transition: color var(--transition);
     }
-    .footer-links a:hover { color: var(--rojo-claro); }
+    .footer-links a:hover { color: #fff; }
     .footer-bottom {
-      max-width: 1240px; margin: 32px auto 0;
-      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+      max-width: var(--max-w); margin: 50px auto 0; padding: 20px 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 12.5px;
+      font-size: 12px;
     }
 
     /* ══════════════════════════════════════════
-       PLATAFORMA ESCUELA (página interna)
+       VENTANAS INTERNAS (Quiénes somos, Historias, Programa detalle)
     ══════════════════════════════════════════ */
-    #plataforma {
+    .page-view {
       display: none;
+      padding-top: 70px;
       min-height: 100vh;
+      background: var(--blanco);
     }
-    #plataforma.active { display: flex; flex-direction: column; }
+    .page-view.active { display: block; }
 
-    /* Login */
+    .page-hero {
+      background: var(--negro);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .page-hero .section-tag { color: var(--rojo-claro); }
+    .page-hero .section-title { color: #fff; margin-bottom: 16px; }
+    .page-hero .section-desc { color: rgba(255,255,255,0.6); margin: 0 auto; }
+
+    .page-content {
+      max-width: 800px; margin: 0 auto;
+      padding: 60px 40px;
+    }
+    .page-content h2 {
+      font-family: var(--font-display); font-size: 28px; font-weight: 700;
+      margin-bottom: 16px; color: var(--negro);
+    }
+    .page-content p {
+      font-size: 16px; color: var(--gris-texto); line-height: 1.8;
+      margin-bottom: 20px; font-weight: 300;
+    }
+    .page-content .stat-highlight {
+      display: flex; gap: 40px; margin: 40px 0;
+      padding: 30px 0; border-top: 1px solid var(--gris-borde);
+      border-bottom: 1px solid var(--gris-borde);
+    }
+    .stat-highlight .stat-item { text-align: center; flex: 1; }
+    .stat-highlight .stat-num {
+      font-family: var(--font-display); font-size: 40px; font-weight: 800;
+      color: var(--rojo);
+    }
+    .stat-highlight .stat-label {
+      font-size: 12px; color: var(--gris-texto); letter-spacing: 0.05em;
+      text-transform: uppercase; margin-top: 4px;
+    }
+
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: var(--rojo);
+      letter-spacing: 0.05em; cursor: pointer;
+      background: none; border: none; font-family: var(--font-body);
+      padding: 12px 0; transition: gap var(--transition);
+    }
+    .btn-back:hover { gap: 12px; }
+    .btn-back svg {
+      width: 16px; height: 16px; stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* Programa detalle page */
+    .programa-detail-hero {
+      height: 400px; position: relative; overflow: hidden;
+    }
+    .programa-detail-hero img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .programa-detail-hero .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+    }
+    .programa-detail-hero .detail-title {
+      position: absolute; bottom: 40px; left: 40px;
+      font-family: var(--font-display); font-size: 40px; font-weight: 800;
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════════
+       PLATAFORMA ESCUELA (LOGIN + DASHBOARD)
+       Se mantiene la misma estructura
+    ══════════════════════════════════════════ */
+    #plataforma { display: none; }
+    #plataforma.active { display: block; }
+
     .login-screen {
       min-height: 100vh;
       display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--blanco);
     }
     .login-left {
-      background: linear-gradient(160deg, var(--rojo-oscuro) 0%, var(--rojo) 60%, var(--rojo-claro) 100%);
+      background: var(--rojo);
       display: flex; align-items: center; justify-content: center;
-      padding: 48px; position: relative; overflow: hidden;
+      padding: 60px; position: relative; overflow: hidden;
     }
-    .login-left-circles {
-      position: absolute; inset: 0; pointer-events: none;
-    }
-    .login-left-circles span {
-      position: absolute; border-radius: 50%;
+    .login-left::before {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.12);
+      top: -100px; right: -100px;
     }
-    .login-left-circles span:nth-child(1) { width: 400px; height: 400px; top: -100px; right: -100px; }
-    .login-left-circles span:nth-child(2) { width: 250px; height: 250px; bottom: -60px; left: -60px; }
-    .login-left-circles span:nth-child(3) { width: 160px; height: 160px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .login-left::after {
+      content: ''; position: absolute;
+      width: 300px; height: 300px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+      bottom: -50px; left: -50px;
+    }
     .login-left-content { position: relative; z-index: 1; color: #fff; }
-    .login-left-logo {
-      display: flex; align-items: center; gap: 14px; margin-bottom: 40px;
+    .login-left-content h2 {
+      font-family: var(--font-display); font-size: 38px; font-weight: 700;
+      line-height: 1.2; margin-bottom: 16px;
     }
-    .login-left-logo-badge {
-      width: 56px; height: 56px; border-radius: 12px;
-      background: rgba(255,255,255,0.2); display: flex;
-      align-items: center; justify-content: center;
-      font-family: var(--font-display); font-weight: 900; font-size: 13px;
-      color: #fff; text-align: center; line-height: 1.2; border: 1px solid rgba(255,255,255,0.3);
+    .login-left-content h2 em { font-style: italic; }
+    .login-left-content p {
+      font-size: 16px; color: rgba(255,255,255,0.75);
+      line-height: 1.7; max-width: 380px;
+    }
+    .login-left-brand {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 40px;
+    }
+    .login-left-badge {
+      background: rgba(255,255,255,0.15); color: #fff;
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 11px; padding: 10px 12px; line-height: 1.1;
+      text-align: center;
     }
     .login-left-brand-name {
-      font-family: var(--font-display); font-size: 24px; font-weight: 900;
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 18px;
     }
-    .login-left-brand-sub { font-size: 11px; opacity: 0.7; letter-spacing: 0.06em; text-transform: uppercase; }
-    .login-left h2 {
-      font-family: var(--font-display); font-size: 36px; font-weight: 900;
-      line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px;
+    .login-left-brand-sub {
+      font-size: 11px; color: rgba(255,255,255,0.6);
+      letter-spacing: 0.08em; text-transform: uppercase;
     }
-    .login-left h2 em { font-style: italic; font-weight: 300; }
-    .login-left p { opacity: 0.8; font-size: 15px; line-height: 1.7; max-width: 340px; }
-    .login-left-stats {
-      display: flex; gap: 28px; margin-top: 36px; padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.2);
-    }
-    .login-stat-num {
-      font-family: var(--font-display); font-size: 26px; font-weight: 900;
-    }
-    .login-stat-label { font-size: 11px; opacity: 0.7; margin-top: 2px; }
 
     .login-right {
-      background: var(--gris-fondo);
       display: flex; align-items: center; justify-content: center;
-      padding: 48px;
+      padding: 60px;
     }
-    .login-form-box {
-      background: #fff; border-radius: 20px; padding: 44px;
-      box-shadow: var(--shadow-md); width: 100%; max-width: 420px;
-    }
-    .login-form-title {
+    .login-form { width: 100%; max-width: 380px; }
+    .login-form h3 {
       font-family: var(--font-display); font-size: 26px; font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
-    .login-form-sub { font-size: 14px; color: var(--gris-texto); margin-bottom: 32px; }
-    .form-group { margin-bottom: 18px; }
-    .form-label {
-      display: block; font-size: 13px; font-weight: 600;
-      color: var(--negro); margin-bottom: 7px;
+    .login-form .login-sub {
+      font-size: 14px; color: var(--gris-texto); margin-bottom: 32px;
     }
-    .form-input {
-      width: 100%; padding: 12px 16px; border-radius: 10px;
+    .login-field { margin-bottom: 18px; }
+    .login-field label {
+      display: block; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--gris-texto); margin-bottom: 6px;
+    }
+    .login-field input {
+      width: 100%; padding: 13px 16px;
       border: 1.5px solid var(--gris-borde);
-      font-family: var(--font-body); font-size: 14px; color: var(--negro);
-      background: var(--gris-fondo); transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
+      font-family: var(--font-body); font-size: 14px;
+      color: var(--negro); outline: none;
+      transition: border-color var(--transition);
     }
-    .form-input:focus { border-color: var(--rojo); box-shadow: 0 0 0 3px rgba(193,32,59,0.1); }
-    .form-forgot {
-      display: block; text-align: right; font-size: 12.5px;
-      color: var(--rojo); text-decoration: none; margin-top: 6px;
+    .login-field input:focus { border-color: var(--rojo); }
+    .login-submit {
+      width: 100%; padding: 14px;
+      background: var(--rojo); color: #fff; border: none;
+      font-family: var(--font-body); font-size: 14px; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      cursor: pointer; transition: background var(--transition);
+      margin-top: 8px;
     }
-    .btn-login {
-      width: 100%; background: var(--rojo); color: #fff;
-      padding: 14px; border-radius: 10px; border: none; cursor: pointer;
-      font-family: var(--font-body); font-size: 15px; font-weight: 700;
-      transition: all 0.2s; margin-top: 8px;
+    .login-submit:hover { background: var(--rojo-oscuro); }
+    .login-demo {
+      margin-top: 16px; padding: 12px;
+      background: var(--gris-fondo); text-align: center;
+      font-size: 12px; color: var(--gris-texto);
     }
-    .btn-login:hover { background: var(--rojo-oscuro); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-    .login-divider {
-      text-align: center; font-size: 12px; color: var(--gris-texto);
-      margin: 20px 0; position: relative;
+    .login-back {
+      display: block; text-align: center; margin-top: 20px;
+      font-size: 13px; color: var(--gris-texto); cursor: pointer;
+      background: none; border: none; font-family: var(--font-body);
     }
-    .login-divider::before, .login-divider::after {
-      content: ''; position: absolute; top: 50%; width: 38%; height: 1px; background: var(--gris-borde);
-    }
-    .login-divider::before { left: 0; }
-    .login-divider::after { right: 0; }
-    .login-register {
-      text-align: center; font-size: 13.5px; color: var(--gris-texto);
-    }
-    .login-register a { color: var(--rojo); font-weight: 600; text-decoration: none; }
+    .login-back:hover { color: var(--rojo); }
 
-    /* ── DASHBOARD ESCUELA ── */
-    .dashboard {
-      display: none;
-      min-height: 100vh; background: var(--gris-fondo);
-    }
+    /* ── DASHBOARD ── */
+    .dashboard { display: none; min-height: 100vh; background: var(--gris-fondo); }
     .dashboard.active { display: flex; }
 
-    /* Sidebar dashboard */
     .dash-sidebar {
-      width: 260px; background: var(--negro); flex-shrink: 0;
-      display: flex; flex-direction: column; position: sticky;
-      top: 0; height: 100vh; overflow-y: auto;
+      width: 250px; background: var(--negro); flex-shrink: 0;
+      display: flex; flex-direction: column;
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
     }
     .dash-sidebar-header {
-      padding: 20px 20px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.07);
       display: flex; align-items: center; gap: 12px;
     }
     .dash-logo-badge {
-      width: 38px; height: 38px; border-radius: 8px;
+      width: 36px; height: 36px;
       background: var(--rojo); display: flex; align-items: center;
       justify-content: center; font-family: var(--font-display);
-      font-weight: 900; font-size: 10px; color: #fff; text-align: center;
-      line-height: 1.2; flex-shrink: 0;
+      font-weight: 900; font-size: 10px; color: #fff;
+      line-height: 1.1; flex-shrink: 0;
     }
-    .dash-brand { color: #fff; font-weight: 600; font-size: 13.5px; }
-    .dash-brand-sub { color: rgba(255,255,255,0.4); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .dash-brand { color: #fff; font-weight: 600; font-size: 13px; }
+    .dash-brand-sub {
+      color: rgba(255,255,255,0.35); font-size: 10px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
 
     .dash-nav { padding: 12px 10px; flex: 1; }
     .dash-nav-label {
-      font-size: 9.5px; font-weight: 700; color: rgba(255,255,255,0.3);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 8px 10px 4px;
+      font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.25);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 10px 10px 6px;
     }
     .dash-nav-item {
       display: flex; align-items: center; gap: 10px;
-      padding: 10px 12px; border-radius: 8px;
-      color: rgba(255,255,255,0.5); cursor: pointer;
-      font-size: 13.5px; font-weight: 500;
+      padding: 10px 12px;
+      color: rgba(255,255,255,0.45); cursor: pointer;
+      font-size: 13px; font-weight: 500;
       transition: all 0.2s; text-decoration: none;
       margin-bottom: 1px;
     }
-    .dash-nav-item:hover { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.85); }
-    .dash-nav-item.active { background: rgba(193,32,59,0.15); color: #fff; }
-    .dash-nav-item.active .nav-icon { color: var(--rojo-claro); }
+    .dash-nav-item:hover { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.8); }
+    .dash-nav-item.active { background: rgba(196,30,58,0.15); color: #fff; }
     .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
 
     .dash-user {
-      padding: 14px 16px 18px;
-      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 16px; border-top: 1px solid rgba(255,255,255,0.07);
       display: flex; align-items: center; gap: 10px;
     }
     .dash-user-avatar {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--rojo), var(--rojo-oscuro));
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-weight: 700; font-size: 13px; flex-shrink: 0;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--rojo); display: flex;
+      align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 12px; flex-shrink: 0;
     }
     .dash-user-name { color: #fff; font-size: 13px; font-weight: 600; }
-    .dash-user-role { color: rgba(255,255,255,0.4); font-size: 11px; }
+    .dash-user-role { color: rgba(255,255,255,0.35); font-size: 11px; }
 
-    /* Main dashboard */
     .dash-main { flex: 1; overflow-y: auto; min-width: 0; }
 
     .dash-topbar {
       background: #fff; border-bottom: 1px solid var(--gris-borde);
-      padding: 0 32px; height: 64px;
+      padding: 0 32px; height: 60px;
       display: flex; align-items: center; justify-content: space-between;
       position: sticky; top: 0; z-index: 10;
     }
-    .dash-topbar-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
-    .dash-topbar-search {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--gris-fondo); border: 1.5px solid var(--gris-borde);
-      border-radius: 10px; padding: 8px 14px; width: 260px;
+    .dash-topbar-title {
+      font-family: var(--font-display); font-size: 18px; font-weight: 700;
     }
-    .dash-topbar-search input {
-      background: none; border: none; outline: none;
-      font-family: var(--font-body); font-size: 13.5px; color: var(--negro);
-      width: 100%;
-    }
-    .dash-topbar-search input::placeholder { color: var(--gris-texto); }
 
     .dash-content { padding: 32px; }
 
-    /* Welcome banner */
     .dash-welcome {
       background: linear-gradient(135deg, var(--rojo-oscuro), var(--rojo));
-      border-radius: 16px; padding: 28px 32px;
+      padding: 28px 32px;
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 28px; position: relative; overflow: hidden;
-    }
-    .dash-welcome::after {
-      content: ''; position: absolute; right: -40px; top: -40px;
-      width: 200px; height: 200px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    .dash-welcome-tag {
-      color: rgba(255,255,255,0.7); font-size: 11px; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;
+      margin-bottom: 28px;
     }
     .dash-welcome h2 {
-      font-family: var(--font-display); font-size: 24px; font-weight: 900;
-      color: #fff; margin-bottom: 6px;
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      color: #fff; margin-bottom: 4px;
     }
-    .dash-welcome p { color: rgba(255,255,255,0.7); font-size: 14px; }
+    .dash-welcome p { color: rgba(255,255,255,0.65); font-size: 14px; }
     .dash-welcome-btn {
-      background: rgba(255,255,255,0.15); color: #fff;
-      padding: 10px 22px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3);
-      font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap;
-      font-family: var(--font-body); transition: background 0.2s; position: relative; z-index: 1;
+      background: rgba(255,255,255,0.12); color: #fff;
+      padding: 10px 22px; border: 1px solid rgba(255,255,255,0.25);
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      font-family: var(--font-body); transition: background 0.2s;
     }
-    .dash-welcome-btn:hover { background: rgba(255,255,255,0.25); }
+    .dash-welcome-btn:hover { background: rgba(255,255,255,0.22); }
 
-    /* Stats */
     .dash-stats {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 28px;
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+      margin-bottom: 28px;
     }
     .stat-card {
-      background: #fff; border-radius: 12px; padding: 20px;
-      border: 1px solid var(--gris-borde); position: relative; overflow: hidden;
+      background: #fff; padding: 20px;
+      border: 1px solid var(--gris-borde);
     }
-    .stat-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    }
-    .stat-card:nth-child(1)::before { background: var(--rojo); }
-    .stat-card:nth-child(2)::before { background: #3B82F6; }
-    .stat-card:nth-child(3)::before { background: #10B981; }
-    .stat-card:nth-child(4)::before { background: #F59E0B; }
-    .stat-label { font-size: 12px; color: var(--gris-texto); margin-bottom: 8px; }
-    .stat-value { font-family: var(--font-display); font-size: 30px; font-weight: 900; line-height: 1; }
-    .stat-card:nth-child(1) .stat-value { color: var(--rojo); }
-    .stat-card:nth-child(2) .stat-value { color: #3B82F6; }
-    .stat-card:nth-child(3) .stat-value { color: #10B981; }
-    .stat-card:nth-child(4) .stat-value { color: #F59E0B; }
-
-    /* Cursos grid */
-    .dash-section-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 18px;
-    }
-    .dash-section-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
-    .dash-ver-todos {
-      font-size: 13px; font-weight: 600; color: var(--rojo);
-      text-decoration: none; background: none; border: none; cursor: pointer;
-      font-family: var(--font-body);
+    .stat-card-label { font-size: 12px; color: var(--gris-texto); margin-bottom: 4px; }
+    .stat-card-num {
+      font-family: var(--font-display); font-size: 28px; font-weight: 800;
     }
 
     .cursos-grid {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 32px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
     }
-    .curso-card {
-      background: #fff; border-radius: 14px;
-      border: 1px solid var(--gris-borde); overflow: hidden;
-      cursor: pointer; transition: all 0.25s;
-    }
-    .curso-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .curso-card-header {
-      height: 6px;
-    }
-    .curso-card-body { padding: 18px; }
+    .curso-card { background: #fff; border: 1px solid var(--gris-borde); overflow: hidden; }
+    .curso-card-header { height: 8px; }
+    .curso-card-body { padding: 20px; }
     .curso-cat {
-      font-size: 10px; font-weight: 700; padding: 3px 10px;
-      border-radius: 6px; display: inline-block; margin-bottom: 10px;
-      letter-spacing: 0.04em; text-transform: uppercase;
+      font-size: 11px; font-weight: 700; padding: 4px 10px;
+      letter-spacing: 0.03em; display: inline-block; margin-bottom: 8px;
     }
     .curso-nombre {
-      font-family: var(--font-display); font-size: 16px; font-weight: 700;
-      color: var(--negro); margin-bottom: 8px; line-height: 1.3;
+      font-family: var(--font-display); font-size: 17px; font-weight: 700;
+      margin-bottom: 6px;
     }
-    .curso-desc { font-size: 12.5px; color: var(--gris-texto); line-height: 1.6; margin-bottom: 14px; }
-    .curso-meta {
-      display: flex; gap: 12px; font-size: 11.5px; color: var(--gris-texto);
-      margin-bottom: 14px;
-    }
+    .curso-desc { font-size: 13px; color: var(--gris-texto); margin-bottom: 12px; line-height: 1.6; }
+    .curso-meta { font-size: 12px; color: var(--gris-texto); display: flex; gap: 12px; }
     .curso-progress-bar {
-      height: 5px; background: var(--gris-borde); border-radius: 3px; overflow: hidden;
+      width: 100%; height: 4px; background: var(--gris-fondo);
+      margin-top: 12px; overflow: hidden;
     }
-    .curso-progress-fill { height: 100%; border-radius: 3px; }
-    .curso-progress-label {
-      display: flex; justify-content: space-between;
-      font-size: 11px; margin-top: 6px;
-      color: var(--gris-texto);
-    }
-
-    /* Comunidad / foro */
-    .foro-lista { display: flex; flex-direction: column; gap: 10px; }
-    .foro-item {
-      background: #fff; border: 1px solid var(--gris-borde);
-      border-radius: 12px; padding: 16px 18px;
-      display: flex; align-items: center; gap: 14px;
-      cursor: pointer; transition: all 0.2s;
-    }
-    .foro-item:hover { border-color: var(--rojo-suave); background: rgba(193,32,59,0.02); }
-    .foro-ico {
-      width: 42px; height: 42px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center; font-size: 18px;
-      flex-shrink: 0;
-    }
-    .foro-title { font-size: 14px; font-weight: 600; color: var(--negro); margin-bottom: 3px; }
-    .foro-meta { font-size: 12px; color: var(--gris-texto); }
-    .foro-hot {
-      font-size: 10px; font-weight: 700; color: var(--rojo);
-      background: var(--rojo-suave); padding: 3px 10px; border-radius: 6px;
-      margin-left: auto; white-space: nowrap;
-    }
+    .curso-progress-fill { height: 100%; transition: width 0.5s; }
 
     /* ══════════════════════════════════════════
-       RESPONSIVE BÁSICO
+       RESPONSIVE
     ══════════════════════════════════════════ */
-    @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
-      .programas-grid { grid-template-columns: 1fr; }
-      .escuela-cta { grid-template-columns: 1fr; margin: 0 16px; }
+    @media (max-width: 1024px) {
+      .escuela-grid { grid-template-columns: repeat(2, 1fr); }
+      .escuela-card { border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .escuela-card:nth-child(2) { border-right: none; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .programa-row { grid-template-columns: 1fr; }
+      .programa-row.reverse .programa-img { order: unset; }
+      .programa-row.reverse .programa-text { order: unset; }
+      .programa-img { height: 300px; }
+      .programa-text { padding: 40px 30px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+      .nav-logo { position: static; transform: none; }
       .login-screen { grid-template-columns: 1fr; }
       .login-left { display: none; }
-      .cursos-grid { grid-template-columns: 1fr 1fr; }
-      .dash-stats { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .cursos-grid { grid-template-columns: 1fr; }
       .dash-sidebar { display: none; }
+      .dash-stats { grid-template-columns: repeat(2,1fr); }
+      .cursos-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero-content { padding: 60px 24px; }
+      .section-wrapper { padding: 60px 24px; }
+      .escuela-grid { grid-template-columns: 1fr; }
+      .escuela-card { border-right: none; }
+      .hero h1 { font-size: 32px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .stat-highlight { flex-direction: column; gap: 20px; }
+      .colaboradores-logos { gap: 30px; }
     }
   </style>
 </head>
 <body>
 
 <!-- ════════════════════════════════════════
-     PÁGINA PRINCIPAL (landing)
+     PÁGINA PRINCIPAL (Landing)
 ════════════════════════════════════════ -->
 <div id="landing">
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a class="nav-logo" href="#" onclick="showLanding()">
-        <div class="nav-logo-img">FUNDA<br>MAS</div>
-        <div class="nav-logo-text">
-          <span class="nav-logo-title">FUNDAMAS</span>
-          <span class="nav-logo-sub">Fundación Amigos Solidarios</span>
-        </div>
-      </a>
 
+      <!-- Logo centrado -->
+      <div class="nav-logo" onclick="showLanding()">
+        <!-- Si tienes el logo como imagen, usa: -->
+        <!-- <img class="nav-logo-img" src="img/logo-fundamas.png" alt="FUNDAMAS"> -->
+        <div class="nav-logo-text-badge">FUNDA<br>MÁS</div>
+      </div>
+
+      <!-- Menú derecha -->
       <ul class="nav-links">
-        <!-- Acerca de -->
+        <!-- Acerca de nosotros -->
         <li class="nav-item">
           <button class="nav-btn">
             Acerca de nosotros
             <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="dropdown">
-            <a href="#">
-              <span class="icon">🏛️</span>
-              ¿Quiénes somos?
-            </a>
-            <a href="#">
-              <span class="icon">✨</span>
-              Historias que suman voluntades
-            </a>
+            <a href="#" onclick="showPage('quienes-somos'); return false;">¿Quiénes somos?</a>
+            <a href="#" onclick="showPage('historias'); return false;">Historias que suman voluntades</a>
           </div>
         </li>
 
         <!-- Programas -->
         <li class="nav-item">
-          <button class="nav-btn" onclick="scrollToProgramas()">Programas</button>
+          <button class="nav-btn" onclick="goToProgramas()">Programas</button>
         </li>
 
-        <!-- Cómo participar -->
-        <li class="nav-item">
-          <button class="nav-btn">
-            Cómo participar
-            <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="dropdown">
-            <a href="#">
-              <span class="icon">🤝</span>
-              Súmate como voluntario
-            </a>
-            <a href="#">
-              <span class="icon">💖</span>
-              Cómo donar
-            </a>
-          </div>
-        </li>
-
-        <!-- Escuela -->
+        <!-- Escuela de Formación -->
         <li class="nav-item">
           <a class="nav-escuela" href="#" onclick="showEscuela(); return false;">
-            📚 Escuela de Formación
+            Escuela de Formación
           </a>
         </li>
       </ul>
+
+      <!-- Hamburger mobile -->
+      <button class="nav-hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ═══ HERO ═══ -->
   <section class="hero">
-    <div class="hero-shapes">
-      <div class="hero-circle-1"></div>
-      <div class="hero-circle-2"></div>
-      <div class="hero-line"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Fundación Amigos Solidarios · Desde 2013</div>
+      <h1>Juntos <em>somos más</em><br>que uno</h1>
+      <p class="hero-desc">
+        Sumamos la voluntad de profesionales, líderes comunitarios, estudiantes y
+        comunidad en general para consolidar un voluntariado de alto impacto que
+        transforme realidades.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn-hero btn-hero-primary" href="#" onclick="showPage('voluntario'); return false;">Súmate como voluntario</a>
+        <a class="btn-hero btn-hero-outline" href="#" onclick="showPage('donar'); return false;">Cómo donar</a>
+      </div>
     </div>
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-tag">
-          <span class="hero-tag-dot"></span>
-          Transformando comunidades desde 2010
-        </div>
-        <h1>Juntos <em>somos<br>más</em> que uno</h1>
-        <p class="hero-desc">
-          FUNDAMAS trabaja por la educación, el bienestar y el desarrollo
-          de comunidades vulnerables en Colombia. Cada acción suma, cada
-          historia importa.
+  </section>
+
+  <!-- ═══ PROGRAMAS – Estilo zigzag ═══ -->
+  <section class="programas-section" id="programas">
+    <div class="section-wrapper" style="padding-bottom: 40px;">
+      <div class="section-tag">Lo que hacemos</div>
+      <div class="section-title">Nuestros <em>programas</em></div>
+      <p class="section-desc">
+        Cada programa nace de una necesidad real. Trabajamos directamente con las
+        comunidades para generar impacto medible y sostenible.
+      </p>
+    </div>
+
+    <!-- Programa 1: Brigadas Integrales -->
+    <div class="programa-row bg-white" onclick="showPage('prog-brigadas')">
+      <div class="programa-img">
+        <!-- Reemplaza con tu imagen: src="img/brigadas.jpg" -->
+        <img src="img/brigadas.jpg" alt="Brigadas Integrales de la Solidaridad"
+             onerror="this.style.background='var(--rojo)'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">783</div>
+        <h3>Brigadas Integrales de la Solidaridad</h3>
+        <p>Atención a población vulnerable de estratos 1 y 2, con jornadas de servicios integrales: medicina, odontología, psicología, peluquería, cuidado personal, asesoría jurídica y entrega de medicamentos.</p>
+        <span class="programa-link">
+          Conocer más
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Programa 2: Protección Animal -->
+    <div class="programa-row reverse bg-light" onclick="showPage('prog-animal')">
+      <div class="programa-img">
+        <img src="img/proteccion-animal.jpg" alt="Protección Animal"
+             onerror="this.style.background='#2D5016'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">700</div>
+        <h3>Protección y Bienestar Animal</h3>
+        <p>Jornadas en diferentes barrios para la sensibilización de la tenencia y adopción responsable, a través de atención veterinaria, desparasitación, vitaminización y entrega de alimento.</p>
+        <span class="programa-link">
+          Conocer más
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Programa 3: LATE -->
+    <div class="programa-row bg-white" onclick="showPage('prog-late')">
+      <div class="programa-img">
+        <img src="img/late.jpg" alt="Programa LATE"
+             onerror="this.style.background='#1E3A5F'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">445</div>
+        <h3>LATE – Atención a Población Vulnerable</h3>
+        <p>Atención a habitantes de calle, adulto mayor y niños en estado de abandono; proporcionando alimentación, vestido y programas de prevención en seguridad y salubridad.</p>
+        <span class="programa-link">
+          Conocer más
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Programa 4: ComunArte -->
+    <div class="programa-row reverse bg-light" onclick="showPage('prog-comunarte')">
+      <div class="programa-img">
+        <img src="img/comunarte.jpg" alt="ComunArte"
+             onerror="this.style.background='#6B21A8'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">820</div>
+        <h3>ComunArte</h3>
+        <p>Actividades orientadas a fortalecer el arte, la cultura, la educación y recreación con niños y jóvenes: cine infantil, ciclo de cuenteros, pintura, teatro y música.</p>
+        <span class="programa-link">
+          Conocer más
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Programa 5: Mercatón Navideño -->
+    <div class="programa-row bg-white" onclick="showPage('prog-mercaton')">
+      <div class="programa-img">
+        <img src="img/mercaton.jpg" alt="Mercatón Navideño"
+             onerror="this.style.background='#B45309'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">185</div>
+        <h3>Mercatón Navideño</h3>
+        <p>Recolección de alimentos no perecederos para donar en temporada navideña: mercados a familias en sectores vulnerables de estratos 1 y 2, en zona urbana y rural, incluyendo vestido y juguetes.</p>
+        <span class="programa-link">
+          Conocer más
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Programa 6: Acciones Solidarias -->
+    <div class="programa-row reverse bg-light" onclick="showPage('prog-acciones')">
+      <div class="programa-img">
+        <img src="img/acciones.jpg" alt="Acciones Solidarias"
+             onerror="this.style.background='#065F46'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">1.655</div>
+        <h3>Acciones Solidarias</h3>
+        <p>Cooperación interinstitucional, solidaridad y apoyo a programas, eventos y actividades de otras organizaciones, así como el apalancamiento de acciones individuales en procura de un beneficio común.</p>
+        <span class="programa-link">
+          Conocer más
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Programa 7: Semillero de Liderazgo -->
+    <div class="programa-row bg-white" onclick="showPage('prog-semillero')">
+      <div class="programa-img">
+        <img src="img/semillero.jpg" alt="Semillero de Liderazgo"
+             onerror="this.style.background='#1E40AF'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">21</div>
+        <h3>Semillero de Liderazgo Juvenil</h3>
+        <p>Herramientas para el liderazgo y servicio social; inculcando la importancia de asumir con criterio las diferentes problemáticas en la vida, la familia y la comunidad. 28 encuentros de formación.</p>
+        <span class="programa-link">
+          Conocer más
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Programa 8: Padrinos de la Navidad -->
+    <div class="programa-row reverse bg-light" onclick="showPage('prog-padrinos')">
+      <div class="programa-img">
+        <img src="img/padrinos.jpg" alt="Padrinos de la Navidad"
+             onerror="this.style.background='#9D174D'; this.style.minHeight='400px';">
+      </div>
+      <div class="programa-text">
+        <div class="programa-number">427</div>
+        <h3>Padrinos de la Navidad</h3>
+        <p>Atención a niños entre 1 y 12 años en situación de vulnerabilidad. 512 juguetes entregados, 854 prendas de vestir y 427 niños apadrinados con amor y esperanza.</p>
+        <span class="programa-link">
+          Conocer más
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ESCUELA DE FORMACIÓN – 4 cuadros ═══ -->
+  <section class="escuela-section">
+    <div class="escuela-inner">
+      <div class="escuela-header">
+        <div class="section-tag">Formación para el cambio</div>
+        <div class="section-title" style="color:#fff;">Escuela de Liderazgo <em>Social</em></div>
+        <p class="section-desc section-desc-center" style="color:rgba(255,255,255,0.55);">
+          Nos preparamos para liderar desde diferentes espacios, en diversas áreas y competencias.
+          400 voluntarios formados. 2.723 asistencias. 49 temas.
         </p>
-        <div class="hero-actions">
-          <a class="btn-primary" href="#" onclick="showEscuela(); return false;">
-            ✏️ Escuela de Formación
-          </a>
-          <a class="btn-outline" href="#programas">
-            Conocer programas
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div>
-            <div class="hero-stat-num">2.400+</div>
-            <div class="hero-stat-label">Beneficiarios</div>
-          </div>
-          <div>
-            <div class="hero-stat-num">15</div>
-            <div class="hero-stat-label">Años de historia</div>
-          </div>
-          <div>
-            <div class="hero-stat-num">320</div>
-            <div class="hero-stat-label">Voluntarios activos</div>
-          </div>
-        </div>
       </div>
 
-      <!-- Visual hero -->
-      <div class="hero-visual">
-        <div class="hero-card-main">
-          <div class="hero-card-badge">🎓 Plataforma activa</div>
-          <div class="hero-card-title">Escuela FUNDAMAS</div>
-          <div class="hero-card-sub">Cursos y diplomados en línea · 2025</div>
-          <div class="course-mini-list">
-            <div class="course-mini-item">
-              <div class="course-mini-icon" style="background:#FEE2E2;">📖</div>
-              <span class="course-mini-name">Liderazgo Comunitario</span>
-              <span class="course-mini-tag">Nuevo</span>
-            </div>
-            <div class="course-mini-item">
-              <div class="course-mini-icon" style="background:#DCFCE7;">💼</div>
-              <span class="course-mini-name">Emprendimiento Social</span>
-              <span class="course-mini-tag">Popular</span>
-            </div>
-            <div class="course-mini-item">
-              <div class="course-mini-icon" style="background:#DBEAFE;">🌍</div>
-              <span class="course-mini-name">Derechos Humanos</span>
-              <span class="course-mini-tag">Gratis</span>
-            </div>
-            <div class="course-mini-item">
-              <div class="course-mini-icon" style="background:#FEF9C3;">🏥</div>
-              <span class="course-mini-name">Primeros Auxilios</span>
-              <span class="course-mini-tag">Certificado</span>
-            </div>
-          </div>
+      <div class="escuela-grid">
+        <div class="escuela-card" onclick="showEscuela()">
+          <div class="escuela-card-icon">📚</div>
+          <h4>Cursos de Formación</h4>
+          <p>Liderazgo comunitario, emprendimiento social, derechos humanos y más. Formación práctica para transformar tu entorno.</p>
+          <span class="escuela-card-link">
+            Ingresar a la plataforma ►
+          </span>
         </div>
-        <div class="hero-float-card">
-          <div class="float-num">+180</div>
-          <div class="float-label">Estudiantes activos</div>
+        <div class="escuela-card" onclick="showEscuela()">
+          <div class="escuela-card-icon">🎓</div>
+          <h4>Diplomados Certificados</h4>
+          <p>Programas de formación integral de 48+ horas con reconocimiento certificado. Gestión social, liderazgo y participación ciudadana.</p>
+          <span class="escuela-card-link">
+            Ingresar a la plataforma ►
+          </span>
+        </div>
+        <div class="escuela-card" onclick="showEscuela()">
+          <div class="escuela-card-icon">🎤</div>
+          <h4>Seminarios</h4>
+          <p>4 seminarios especializados con expertos invitados. Espacios de aprendizaje intensivo y networking entre líderes sociales.</p>
+          <span class="escuela-card-link">
+            Ingresar a la plataforma ►
+          </span>
+        </div>
+        <div class="escuela-card" onclick="showEscuela()">
+          <div class="escuela-card-icon">🌱</div>
+          <h4>Semillero Juvenil</h4>
+          <p>Formación de jóvenes líderes de impacto. 28 encuentros, herramientas de liderazgo y servicio social para la nueva generación.</p>
+          <span class="escuela-card-link">
+            Ingresar a la plataforma ►
+          </span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROGRAMAS -->
-  <div id="programas" style="background:#fff; padding: 0 0 80px;">
-    <div class="section" style="padding-bottom: 0;">
-      <div class="section-tag">Lo que hacemos</div>
-      <h2 class="section-title">Nuestros <em>programas</em></h2>
-      <p class="section-desc">Intervenciones integrales que generan impacto real en las comunidades donde trabajamos.</p>
-      <div class="programas-grid">
-        <div class="programa-card">
-          <div class="programa-ico">📚</div>
-          <div class="programa-nombre">Educación y Formación</div>
-          <p class="programa-desc">Cursos, talleres y diplomados para el desarrollo de capacidades en jóvenes y adultos de comunidades vulnerables.</p>
-        </div>
-        <div class="programa-card">
-          <div class="programa-ico">🌱</div>
-          <div class="programa-nombre">Emprendimiento Social</div>
-          <p class="programa-desc">Acompañamos proyectos productivos con mentoría, capital semilla y redes de apoyo empresarial.</p>
-        </div>
-        <div class="programa-card">
-          <div class="programa-ico">🤝</div>
-          <div class="programa-nombre">Voluntariado</div>
-          <p class="programa-desc">Red de voluntarios comprometidos con el cambio social. Súmate y transforma realidades desde tu talento.</p>
-        </div>
-        <div class="programa-card">
-          <div class="programa-ico">❤️</div>
-          <div class="programa-nombre">Bienestar y Salud</div>
-          <p class="programa-desc">Brigadas de salud, primeros auxilios y promoción de hábitos saludables en territorios de alta vulnerabilidad.</p>
-        </div>
-        <div class="programa-card">
-          <div class="programa-ico">⚖️</div>
-          <div class="programa-nombre">Derechos y Ciudadanía</div>
-          <p class="programa-desc">Formamos ciudadanos conscientes de sus derechos, con énfasis en poblaciones históricamente excluidas.</p>
-        </div>
-        <div class="programa-card">
-          <div class="programa-ico">🌍</div>
-          <div class="programa-nombre">Medio Ambiente</div>
-          <p class="programa-desc">Proyectos de educación ambiental y desarrollo sostenible que conectan comunidades con su entorno natural.</p>
-        </div>
+  <!-- ═══ COLABORADORES ═══ -->
+  <section class="colaboradores-section">
+    <div class="colaboradores-inner">
+      <div class="section-tag" style="text-align:center;">Aliados estratégicos</div>
+      <div class="section-title" style="text-align:center;">Nuestros <em>colaboradores</em></div>
+      <p class="section-desc section-desc-center">
+        Organizaciones que suman esfuerzos para ampliar nuestro impacto social.
+      </p>
+      <div class="colaboradores-logos">
+        <!-- Reemplaza con tus logos reales: <img class="colab-logo" src="img/logo-aliado1.png" alt="Aliado 1"> -->
+        <div class="colab-placeholder">Aliado 1</div>
+        <div class="colab-placeholder">Aliado 2</div>
+        <div class="colab-placeholder">Aliado 3</div>
+        <div class="colab-placeholder">Aliado 4</div>
+        <div class="colab-placeholder">Aliado 5</div>
+        <div class="colab-placeholder">Aliado 6</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- CTA ESCUELA -->
-  <div style="padding: 80px 0; background: var(--gris-fondo);">
-    <div class="escuela-cta">
-      <div class="escuela-cta-circles"></div>
-      <div style="position:relative; z-index:1;">
-        <div class="escuela-cta-label">📚 Plataforma de aprendizaje</div>
-        <h2>Escuela de Formación<br>FUNDAMAS</h2>
-        <p>Accede a cursos, diplomados y materiales de formación diseñados para líderes comunitarios, voluntarios y estudiantes de la fundación.</p>
-      </div>
-      <div style="position:relative; z-index:1; flex-shrink:0;">
-        <a class="btn-white" href="#" onclick="showEscuela(); return false;">
-          Ingresar a la plataforma →
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
+  <!-- ═══ FOOTER ═══ -->
   <footer class="footer">
     <div class="footer-inner">
       <div>
         <div class="footer-brand-name">FUNDAMAS</div>
         <div class="footer-brand-sub">Fundación Amigos Solidarios</div>
-        <p class="footer-desc">Trabajamos por la educación, el bienestar y el desarrollo integral de comunidades en Colombia desde 2010.</p>
+        <p class="footer-desc">Trabajamos por la educación, el bienestar y el desarrollo integral de comunidades en Colombia desde 2013.</p>
       </div>
       <div>
         <div class="footer-col-title">Nosotros</div>
         <ul class="footer-links">
-          <li><a href="#">¿Quiénes somos?</a></li>
-          <li><a href="#">Nuestra misión</a></li>
-          <li><a href="#">Historias</a></li>
-          <li><a href="#">Equipo</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Programas</div>
-        <ul class="footer-links">
-          <li><a href="#">Educación</a></li>
-          <li><a href="#">Emprendimiento</a></li>
-          <li><a href="#">Voluntariado</a></li>
-          <li><a href="#">Salud</a></li>
+          <li><a href="#" onclick="showPage('quienes-somos'); return false;">¿Quiénes somos?</a></li>
+          <li><a href="#" onclick="showPage('historias'); return false;">Historias</a></li>
+          <li><a href="#" onclick="goToProgramas(); return false;">Programas</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Participa</div>
         <ul class="footer-links">
-          <li><a href="#">Sé voluntario</a></li>
-          <li><a href="#">Dona</a></li>
+          <li><a href="#" onclick="showPage('voluntario'); return false;">Sé voluntario</a></li>
+          <li><a href="#" onclick="showPage('donar'); return false;">Cómo donar</a></li>
           <li><a href="#" onclick="showEscuela(); return false;">Escuela</a></li>
-          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <ul class="footer-links">
+          <li><a href="#">fundamas@gmail.com</a></li>
+          <li><a href="https://fundacionfundamas.com/" target="_blank">fundacionfundamas.com</a></li>
         </ul>
       </div>
     </div>
@@ -1018,6 +1105,124 @@
 
 
 <!-- ════════════════════════════════════════
+     VENTANAS INTERNAS (Pages)
+════════════════════════════════════════ -->
+
+<!-- ¿Quiénes somos? -->
+<div id="page-quienes-somos" class="page-view">
+  <div class="page-hero">
+    <div class="section-tag">Acerca de nosotros</div>
+    <div class="section-title">¿Quiénes <em>somos</em>?</div>
+    <p class="section-desc">Conoce la historia, misión y visión de la Fundación Amigos Solidarios.</p>
+  </div>
+  <div class="page-content">
+    <button class="btn-back" onclick="showLanding()">
+      <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver al inicio
+    </button>
+    <h2>Nuestra historia</h2>
+    <p>La Fundación Amigos Solidarios – FUNDAMAS suma la voluntad de profesionales, líderes comunitarios, estudiantes y comunidad en general, con el fin de consolidar un voluntariado de alto impacto, de acciones y hechos que formen ciudadanos más activos socialmente.</p>
+    <p>Desde nuestra creación hemos trabajado de manera permanente, promoviendo programas enfocados en mejorar la calidad de vida de las comunidades; además de fortalecer a través de la formación a nuestros voluntarios.</p>
+
+    <div class="stat-highlight">
+      <div class="stat-item">
+        <div class="stat-num">58.621</div>
+        <div class="stat-label">Servicios prestados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Años de impacto</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">400</div>
+        <div class="stat-label">Voluntarios formados</div>
+      </div>
+    </div>
+
+    <h2>Misión</h2>
+    <p>Generar acciones reales para el desarrollo integral de la comunidad.</p>
+
+    <h2>Visión</h2>
+    <p>Ser líderes en la implementación de alternativas de desarrollo integral sostenible.</p>
+
+    <h2>Principios</h2>
+    <p>Lealtad · Compromiso · Autogestión</p>
+  </div>
+</div>
+
+<!-- Historias que suman voluntades -->
+<div id="page-historias" class="page-view">
+  <div class="page-hero">
+    <div class="section-tag">Acerca de nosotros</div>
+    <div class="section-title">Historias que suman <em>voluntades</em></div>
+    <p class="section-desc">Cada persona, cada acción, cada historia es parte de algo más grande.</p>
+  </div>
+  <div class="page-content">
+    <button class="btn-back" onclick="showLanding()">
+      <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver al inicio
+    </button>
+    <h2>12 años construyendo comunidad</h2>
+    <p>En 12 años hemos impactado miles de vidas a través de nuestros programas. Cada jornada, cada brigada, cada entrega de alimentos o juguetes es una historia de transformación compartida entre voluntarios y comunidades.</p>
+    <p>Nuestras cifras hablan por sí solas: 14.476 servicios en brigadas integrales, 6.480 beneficiarios en protección animal, 4.119 personas atendidas en LATE, 3.995 personas beneficiadas en ComunArte, y más de 58.621 servicios prestados a la comunidad.</p>
+    <p>Pero detrás de cada número hay un rostro, una familia, una comunidad que encontró en FUNDAMAS la mano solidaria que necesitaba.</p>
+    <!-- Aquí puedes agregar más historias con fotos -->
+  </div>
+</div>
+
+<!-- Súmate como voluntario -->
+<div id="page-voluntario" class="page-view">
+  <div class="page-hero">
+    <div class="section-tag">Cómo participar</div>
+    <div class="section-title">Súmate como <em>voluntario</em></div>
+    <p class="section-desc">Tu talento y tu tiempo pueden transformar vidas.</p>
+  </div>
+  <div class="page-content">
+    <button class="btn-back" onclick="showLanding()">
+      <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver al inicio
+    </button>
+    <h2>¿Por qué ser voluntario?</h2>
+    <p>FUNDAMAS promueve programas enfocados en mejorar la calidad de vida de las comunidades; además de fortalecer a través de la formación a sus voluntarios. Con 400 voluntarios formados y un programa de Escuela de Liderazgo Social, ofrecemos herramientas reales para el servicio y el crecimiento personal.</p>
+    <p>Contáctanos para saber cómo puedes sumarte a nuestro equipo de voluntarios.</p>
+  </div>
+</div>
+
+<!-- Cómo donar -->
+<div id="page-donar" class="page-view">
+  <div class="page-hero">
+    <div class="section-tag">Cómo participar</div>
+    <div class="section-title">Cómo <em>donar</em></div>
+    <p class="section-desc">Tu aporte llega directamente a quienes más lo necesitan.</p>
+  </div>
+  <div class="page-content">
+    <button class="btn-back" onclick="showLanding()">
+      <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver al inicio
+    </button>
+    <h2>Formas de donar</h2>
+    <p>Cada donación, sin importar su tamaño, tiene un impacto directo en nuestras comunidades. Desde alimentos no perecederos hasta apoyo económico, todo suma para continuar nuestros programas sociales.</p>
+    <p>Contáctanos para conocer las diferentes formas en que puedes contribuir.</p>
+  </div>
+</div>
+
+<!-- Programa detalle genérico (se reutiliza para cada programa) -->
+<div id="page-programa-detalle" class="page-view">
+  <div class="page-hero" id="prog-detail-hero">
+    <div class="section-tag">Programas</div>
+    <div class="section-title" id="prog-detail-title"></div>
+  </div>
+  <div class="page-content">
+    <button class="btn-back" onclick="showLanding()">
+      <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver al inicio
+    </button>
+    <div id="prog-detail-content"></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
      PLATAFORMA ESCUELA
 ════════════════════════════════════════ -->
 <div id="plataforma">
@@ -1025,77 +1230,39 @@
   <!-- LOGIN -->
   <div id="login-screen" class="login-screen">
     <div class="login-left">
-      <div class="login-left-circles">
-        <span></span><span></span><span></span>
-      </div>
       <div class="login-left-content">
-        <div class="login-left-logo">
-          <div class="login-left-logo-badge">FUNDA<br>MAS</div>
+        <div class="login-left-brand">
+          <div class="login-left-badge">FUNDA<br>MÁS</div>
           <div>
             <div class="login-left-brand-name">FUNDAMAS</div>
             <div class="login-left-brand-sub">Escuela de Formación</div>
           </div>
         </div>
         <h2>Aprende, <em>crece</em><br>y transforma</h2>
-        <p>La plataforma de aprendizaje de la Fundación Amigos Solidarios. Accede a cursos, diplomados y comunidad de práctica.</p>
-        <div class="login-left-stats">
-          <div>
-            <div class="login-stat-num">12+</div>
-            <div class="login-stat-label">Cursos activos</div>
-          </div>
-          <div>
-            <div class="login-stat-num">180</div>
-            <div class="login-stat-label">Estudiantes</div>
-          </div>
-          <div>
-            <div class="login-stat-num">8</div>
-            <div class="login-stat-label">Diplomados</div>
-          </div>
-        </div>
+        <p>La plataforma de aprendizaje de la Fundación Amigos Solidarios. Accede a cursos, diplomados y materiales diseñados para líderes comunitarios.</p>
       </div>
     </div>
-
     <div class="login-right">
-      <div class="login-form-box">
-        <div class="login-form-title">Bienvenido/a de nuevo</div>
-        <div class="login-form-sub">Ingresa a tu cuenta de la Escuela FUNDAMAS</div>
-
-        <div class="form-group">
-          <label class="form-label">Correo electrónico</label>
-          <input class="form-input" type="email" placeholder="tucorreo@email.com" id="login-email"/>
+      <div class="login-form">
+        <h3>Iniciar sesión</h3>
+        <p class="login-sub">Ingresa a la Escuela de Formación FUNDAMAS</p>
+        <div class="login-field">
+          <label>Correo electrónico</label>
+          <input type="email" id="login-email" placeholder="tucorreo@ejemplo.com">
         </div>
-        <div class="form-group">
-          <label class="form-label">Contraseña</label>
-          <input class="form-input" type="password" placeholder="••••••••" id="login-pass"/>
-          <a href="#" class="form-forgot">¿Olvidaste tu contraseña?</a>
+        <div class="login-field">
+          <label>Contraseña</label>
+          <input type="password" id="login-pass" placeholder="••••••••">
         </div>
-
-        <button class="btn-login" onclick="doLogin()">Ingresar a la plataforma</button>
-
-        <div class="login-divider">o continúa con</div>
-
-        <div class="login-register">
-          ¿No tienes cuenta? <a href="#">Regístrate aquí</a>
-        </div>
-
-        <div style="margin-top:24px; padding-top:16px; border-top:1px solid var(--gris-borde); text-align:center;">
-          <button onclick="showLanding()" style="background:none; border:none; color:var(--gris-texto); font-size:13px; cursor:pointer; font-family:var(--font-body);">
-            ← Volver a la página principal
-          </button>
-        </div>
-
-        <!-- Demo hint -->
-        <div style="margin-top:14px; background:var(--rojo-suave); border-radius:8px; padding:10px 14px; font-size:12px; color:var(--rojo); text-align:center;">
-          <strong>Demo:</strong> usa cualquier correo y contraseña para ingresar
-        </div>
+        <button class="login-submit" onclick="doLogin()">Ingresar</button>
+        <div class="login-demo"><strong>Demo:</strong> usa cualquier correo y contraseña para ingresar</div>
+        <button class="login-back" onclick="showLanding()">← Volver a la página principal</button>
       </div>
     </div>
   </div>
 
   <!-- DASHBOARD -->
   <div id="dashboard" class="dashboard">
-
-    <!-- Sidebar -->
     <aside class="dash-sidebar">
       <div class="dash-sidebar-header">
         <div class="dash-logo-badge">FM</div>
@@ -1104,104 +1271,74 @@
           <div class="dash-brand-sub">Plataforma de formación</div>
         </div>
       </div>
-
       <nav class="dash-nav">
         <div class="dash-nav-label">Principal</div>
-        <a class="dash-nav-item active" href="#" onclick="setTab(this,'tab-inicio')">
+        <a class="dash-nav-item active" href="#" onclick="setTab(this,'tab-inicio'); return false;">
           <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           Inicio
         </a>
-        <a class="dash-nav-item" href="#" onclick="setTab(this,'tab-cursos')">
-          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          Mis cursos
+        <a class="dash-nav-item" href="#" onclick="setTab(this,'tab-cursos'); return false;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+          Mis Cursos
         </a>
-        <a class="dash-nav-item" href="#" onclick="setTab(this,'tab-catalogo')">
-          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+        <a class="dash-nav-item" href="#" onclick="setTab(this,'tab-catalogo'); return false;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
           Catálogo
         </a>
-
-        <div class="dash-nav-label" style="margin-top:8px;">Comunidad</div>
-        <a class="dash-nav-item" href="#" onclick="setTab(this,'tab-foro')">
-          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <a class="dash-nav-item" href="#" onclick="setTab(this,'tab-foro'); return false;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
           Comunidad
         </a>
-        <a class="dash-nav-item" href="#" onclick="setTab(this,'tab-certs')">
-          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        <a class="dash-nav-item" href="#" onclick="setTab(this,'tab-certs'); return false;">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
           Certificados
         </a>
-
-        <div class="dash-nav-label" style="margin-top:8px;">Cuenta</div>
-        <a class="dash-nav-item" href="#" onclick="showLanding(); return false;">
-          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-          Salir
-        </a>
       </nav>
-
       <div class="dash-user">
-        <div class="dash-user-avatar">MA</div>
+        <div class="dash-user-avatar">ES</div>
         <div>
-          <div class="dash-user-name">María Amigos</div>
-          <div class="dash-user-role">Estudiante · FUNDAMAS</div>
+          <div class="dash-user-name">Estudiante</div>
+          <div class="dash-user-role">Voluntario FUNDAMAS</div>
         </div>
       </div>
     </aside>
 
-    <!-- Main content -->
     <div class="dash-main">
       <div class="dash-topbar">
         <div class="dash-topbar-title" id="tab-title">Panel de inicio</div>
-        <div class="dash-topbar-search">
-          <svg width="16" height="16" fill="none" stroke="#9CA3AF" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" placeholder="Buscar cursos, contenidos…"/>
-        </div>
+        <button class="login-back" onclick="showLanding()" style="font-size:12px;">← Volver al sitio</button>
       </div>
-
       <div class="dash-content">
 
-        <!-- TAB: INICIO -->
+        <!-- Tab Inicio -->
         <div id="tab-inicio">
           <div class="dash-welcome">
             <div>
-              <div class="dash-welcome-tag">¡Hola, María! 👋</div>
-              <h2>Continúa tu aprendizaje</h2>
-              <p>Tienes 2 cursos en progreso. ¡Sigue adelante!</p>
+              <h2>Bienvenido a la Escuela</h2>
+              <p>Continúa tu formación como líder social.</p>
             </div>
-            <button class="dash-welcome-btn" onclick="setTabById('tab-cursos','Mis cursos')">Ver mis cursos →</button>
+            <button class="dash-welcome-btn" onclick="setTabById('tab-catalogo','Catálogo')">Explorar catálogo</button>
           </div>
-
           <div class="dash-stats">
-            <div class="stat-card">
-              <div class="stat-label">Cursos activos</div>
-              <div class="stat-value">3</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Horas de estudio</div>
-              <div class="stat-value">24h</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Completados</div>
-              <div class="stat-value">1</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-label">Posición ranking</div>
-              <div class="stat-value">#8</div>
-            </div>
+            <div class="stat-card"><div class="stat-card-label">Cursos inscritos</div><div class="stat-card-num" style="color:var(--rojo);">3</div></div>
+            <div class="stat-card"><div class="stat-card-label">En progreso</div><div class="stat-card-num" style="color:#10B981;">2</div></div>
+            <div class="stat-card"><div class="stat-card-label">Completados</div><div class="stat-card-num" style="color:#3B82F6;">1</div></div>
+            <div class="stat-card"><div class="stat-card-label">Certificados</div><div class="stat-card-num" style="color:#F59E0B;">1</div></div>
           </div>
+        </div>
 
-          <div class="dash-section-header">
-            <div class="dash-section-title">Continúa donde dejaste</div>
-            <button class="dash-ver-todos" onclick="setTabById('tab-cursos','Mis cursos')">Ver todos →</button>
-          </div>
+        <!-- Tab Mis Cursos -->
+        <div id="tab-cursos" style="display:none;">
+          <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:20px;">Mis cursos activos</h3>
           <div class="cursos-grid">
             <div class="curso-card">
               <div class="curso-card-header" style="background:var(--rojo);"></div>
               <div class="curso-card-body">
                 <span class="curso-cat" style="background:#FEE2E2;color:var(--rojo);">Liderazgo</span>
                 <div class="curso-nombre">Liderazgo Comunitario</div>
-                <div class="curso-desc">Desarrolla habilidades para liderar procesos de transformación en tu comunidad.</div>
+                <div class="curso-desc">Habilidades de liderazgo para la transformación territorial.</div>
                 <div class="curso-meta"><span>6 módulos</span><span>9h</span></div>
                 <div class="curso-progress-bar"><div class="curso-progress-fill" style="width:65%;background:var(--rojo);"></div></div>
-                <div class="curso-progress-label"><span>Progreso</span><span style="color:var(--rojo);font-weight:700;">65%</span></div>
               </div>
             </div>
             <div class="curso-card">
@@ -1209,63 +1346,25 @@
               <div class="curso-card-body">
                 <span class="curso-cat" style="background:#D1FAE5;color:#065F46;">Emprendimiento</span>
                 <div class="curso-nombre">Emprendimiento Social</div>
-                <div class="curso-desc">Construye proyectos con impacto social y bases empresariales sólidas.</div>
+                <div class="curso-desc">Proyectos con impacto social y bases empresariales.</div>
                 <div class="curso-meta"><span>8 módulos</span><span>12h</span></div>
                 <div class="curso-progress-bar"><div class="curso-progress-fill" style="width:30%;background:#10B981;"></div></div>
-                <div class="curso-progress-label"><span>Progreso</span><span style="color:#10B981;font-weight:700;">30%</span></div>
-              </div>
-            </div>
-            <div class="curso-card">
-              <div class="curso-card-header" style="background:#3B82F6;"></div>
-              <div class="curso-card-body">
-                <span class="curso-cat" style="background:#DBEAFE;color:#1E40AF;">Derechos</span>
-                <div class="curso-nombre">Derechos Humanos</div>
-                <div class="curso-desc">Conoce y defiende los derechos fundamentales de toda persona.</div>
-                <div class="curso-meta"><span>5 módulos</span><span>7h</span></div>
-                <div class="curso-progress-bar"><div class="curso-progress-fill" style="width:10%;background:#3B82F6;"></div></div>
-                <div class="curso-progress-label"><span>Progreso</span><span style="color:#3B82F6;font-weight:700;">10%</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dash-section-header">
-            <div class="dash-section-title">Comunidad reciente</div>
-            <button class="dash-ver-todos" onclick="setTabById('tab-foro','Comunidad')">Ver todo →</button>
-          </div>
-          <div class="foro-lista">
-            <div class="foro-item">
-              <div class="foro-ico" style="background:#FEE2E2;">🔥</div>
-              <div>
-                <div class="foro-title">Estrategias para fortalecer JAL en municipios pequeños</div>
-                <div class="foro-meta">Por Luisa M. · hace 2h · 34 respuestas</div>
-              </div>
-              <div class="foro-hot">Popular</div>
-            </div>
-            <div class="foro-item">
-              <div class="foro-ico" style="background:#DBEAFE;">💬</div>
-              <div>
-                <div class="foro-title">Recursos para el módulo 3 de Liderazgo Comunitario</div>
-                <div class="foro-meta">Por Carlos R. · hace 5h · 12 respuestas</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- TAB: MIS CURSOS -->
-        <div id="tab-cursos" style="display:none;">
-          <div class="dash-section-header">
-            <div class="dash-section-title">Mis cursos</div>
-          </div>
+        <!-- Tab Catálogo -->
+        <div id="tab-catalogo" style="display:none;">
+          <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:20px;">Catálogo de cursos</h3>
           <div class="cursos-grid">
             <div class="curso-card">
               <div class="curso-card-header" style="background:var(--rojo);"></div>
               <div class="curso-card-body">
                 <span class="curso-cat" style="background:#FEE2E2;color:var(--rojo);">Liderazgo</span>
                 <div class="curso-nombre">Liderazgo Comunitario</div>
-                <div class="curso-desc">Desarrolla habilidades para liderar procesos de transformación en tu comunidad.</div>
-                <div class="curso-meta"><span>6 módulos</span><span>9h</span><span>Inst. Ana Gómez</span></div>
-                <div class="curso-progress-bar"><div class="curso-progress-fill" style="width:65%;background:var(--rojo);"></div></div>
-                <div class="curso-progress-label"><span>65% completado</span><span style="color:var(--rojo);font-weight:700;">En progreso</span></div>
+                <div class="curso-desc">Habilidades de liderazgo para la transformación territorial.</div>
+                <div class="curso-meta"><span>6 módulos</span><span>9h</span><span>342 estudiantes</span></div>
               </div>
             </div>
             <div class="curso-card">
@@ -1273,10 +1372,8 @@
               <div class="curso-card-body">
                 <span class="curso-cat" style="background:#D1FAE5;color:#065F46;">Emprendimiento</span>
                 <div class="curso-nombre">Emprendimiento Social</div>
-                <div class="curso-desc">Construye proyectos con impacto social y bases empresariales sólidas.</div>
-                <div class="curso-meta"><span>8 módulos</span><span>12h</span><span>Inst. Pedro L.</span></div>
-                <div class="curso-progress-bar"><div class="curso-progress-fill" style="width:30%;background:#10B981;"></div></div>
-                <div class="curso-progress-label"><span>30% completado</span><span style="color:#10B981;font-weight:700;">En progreso</span></div>
+                <div class="curso-desc">Proyectos con impacto social y bases sólidas.</div>
+                <div class="curso-meta"><span>8 módulos</span><span>12h</span><span>518 estudiantes</span></div>
               </div>
             </div>
             <div class="curso-card">
@@ -1284,119 +1381,163 @@
               <div class="curso-card-body">
                 <span class="curso-cat" style="background:#DBEAFE;color:#1E40AF;">Derechos</span>
                 <div class="curso-nombre">Derechos Humanos</div>
-                <div class="curso-desc">Conoce y defiende los derechos fundamentales de toda persona.</div>
-                <div class="curso-meta"><span>5 módulos</span><span>7h</span><span>Inst. Clara V.</span></div>
-                <div class="curso-progress-bar"><div class="curso-progress-fill" style="width:10%;background:#3B82F6;"></div></div>
-                <div class="curso-progress-label"><span>10% completado</span><span style="color:#3B82F6;font-weight:700;">Iniciado</span></div>
+                <div class="curso-desc">Conoce y defiende los derechos fundamentales.</div>
+                <div class="curso-meta"><span>5 módulos</span><span>7h</span><span>276 estudiantes</span></div>
               </div>
             </div>
-            <div class="curso-card" style="border:2px dashed var(--gris-borde); background: var(--gris-fondo);">
-              <div class="curso-card-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:180px;text-align:center;">
-                <div style="font-size:32px;margin-bottom:10px;">➕</div>
-                <div style="font-weight:600;color:var(--gris-texto);margin-bottom:6px;">Explorar más cursos</div>
-                <button onclick="setTabById('tab-catalogo','Catálogo')" style="background:var(--rojo);color:#fff;border:none;padding:8px 20px;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;margin-top:6px;">Ver catálogo</button>
+            <div class="curso-card">
+              <div class="curso-card-header" style="background:#F59E0B;"></div>
+              <div class="curso-card-body">
+                <span class="curso-cat" style="background:#FEF3C7;color:#92400E;">Salud</span>
+                <div class="curso-nombre">Primeros Auxilios</div>
+                <div class="curso-desc">Responde ante emergencias con conocimiento certificado.</div>
+                <div class="curso-meta"><span>4 módulos</span><span>6h</span><span>198 estudiantes</span></div>
+              </div>
+            </div>
+            <div class="curso-card">
+              <div class="curso-card-header" style="background:#8B5CF6;"></div>
+              <div class="curso-card-body">
+                <span class="curso-cat" style="background:#EDE9FE;color:#5B21B6;">Diplomado</span>
+                <div class="curso-nombre">Diplomado en Gestión Social</div>
+                <div class="curso-desc">Formación integral con reconocimiento certificado.</div>
+                <div class="curso-meta"><span>16 módulos</span><span>48h</span><span>89 estudiantes</span></div>
+              </div>
+            </div>
+            <div class="curso-card">
+              <div class="curso-card-header" style="background:#EC4899;"></div>
+              <div class="curso-card-body">
+                <span class="curso-cat" style="background:#FCE7F3;color:#9D174D;">Comunidad</span>
+                <div class="curso-nombre">Participación Ciudadana</div>
+                <div class="curso-desc">Herramientas para la acción cívica y la incidencia política.</div>
+                <div class="curso-meta"><span>5 módulos</span><span>8h</span><span>145 estudiantes</span></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- TAB: CATÁLOGO -->
-        <div id="tab-catalogo" style="display:none;">
-          <div class="dash-section-header">
-            <div class="dash-section-title">Catálogo de cursos</div>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
-            <button style="background:var(--rojo);color:#fff;border:none;padding:7px 18px;border-radius:20px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;">Todos</button>
-            <button style="background:#fff;color:var(--gris-texto);border:1px solid var(--gris-borde);padding:7px 18px;border-radius:20px;font-family:var(--font-body);font-size:13px;cursor:pointer;">Liderazgo</button>
-            <button style="background:#fff;color:var(--gris-texto);border:1px solid var(--gris-borde);padding:7px 18px;border-radius:20px;font-family:var(--font-body);font-size:13px;cursor:pointer;">Emprendimiento</button>
-            <button style="background:#fff;color:var(--gris-texto);border:1px solid var(--gris-borde);padding:7px 18px;border-radius:20px;font-family:var(--font-body);font-size:13px;cursor:pointer;">Derechos</button>
-            <button style="background:#fff;color:var(--gris-texto);border:1px solid var(--gris-borde);padding:7px 18px;border-radius:20px;font-family:var(--font-body);font-size:13px;cursor:pointer;">Salud</button>
-            <button style="background:#fff;color:var(--gris-texto);border:1px solid var(--gris-borde);padding:7px 18px;border-radius:20px;font-family:var(--font-body);font-size:13px;cursor:pointer;">Diplomados</button>
-          </div>
-          <div class="cursos-grid">
-            <div class="curso-card"><div class="curso-card-header" style="background:var(--rojo);"></div><div class="curso-card-body"><span class="curso-cat" style="background:#FEE2E2;color:var(--rojo);">Liderazgo</span><div class="curso-nombre">Liderazgo Comunitario</div><div class="curso-desc">Habilidades de liderazgo para la transformación territorial.</div><div class="curso-meta"><span>6 módulos</span><span>9h</span><span>342 estudiantes</span></div><button style="width:100%;background:var(--rojo);color:#fff;border:none;padding:10px;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;">Inscribirme</button></div></div>
-            <div class="curso-card"><div class="curso-card-header" style="background:#10B981;"></div><div class="curso-card-body"><span class="curso-cat" style="background:#D1FAE5;color:#065F46;">Emprendimiento</span><div class="curso-nombre">Emprendimiento Social</div><div class="curso-desc">Proyectos con impacto social y bases empresariales sólidas.</div><div class="curso-meta"><span>8 módulos</span><span>12h</span><span>518 estudiantes</span></div><button style="width:100%;background:#10B981;color:#fff;border:none;padding:10px;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;">Inscribirme</button></div></div>
-            <div class="curso-card"><div class="curso-card-header" style="background:#3B82F6;"></div><div class="curso-card-body"><span class="curso-cat" style="background:#DBEAFE;color:#1E40AF;">Derechos</span><div class="curso-nombre">Derechos Humanos</div><div class="curso-desc">Conoce y defiende los derechos fundamentales de toda persona.</div><div class="curso-meta"><span>5 módulos</span><span>7h</span><span>276 estudiantes</span></div><button style="width:100%;background:#3B82F6;color:#fff;border:none;padding:10px;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;">Inscribirme</button></div></div>
-            <div class="curso-card"><div class="curso-card-header" style="background:#F59E0B;"></div><div class="curso-card-body"><span class="curso-cat" style="background:#FEF3C7;color:#92400E;">Salud</span><div class="curso-nombre">Primeros Auxilios</div><div class="curso-desc">Responde ante emergencias con seguridad y conocimiento certificado.</div><div class="curso-meta"><span>4 módulos</span><span>6h</span><span>198 estudiantes</span></div><button style="width:100%;background:#F59E0B;color:#fff;border:none;padding:10px;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;">Inscribirme</button></div></div>
-            <div class="curso-card"><div class="curso-card-header" style="background:#8B5CF6;"></div><div class="curso-card-body"><span class="curso-cat" style="background:#EDE9FE;color:#5B21B6;">Diplomado</span><div class="curso-nombre">Diplomado en Gestión Social</div><div class="curso-desc">Formación integral para gestores sociales con reconocimiento certificado.</div><div class="curso-meta"><span>16 módulos</span><span>48h</span><span>89 estudiantes</span></div><button style="width:100%;background:#8B5CF6;color:#fff;border:none;padding:10px;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;">Inscribirme</button></div></div>
-            <div class="curso-card"><div class="curso-card-header" style="background:#EC4899;"></div><div class="curso-card-body"><span class="curso-cat" style="background:#FCE7F3;color:#9D174D;">Comunidad</span><div class="curso-nombre">Participación Ciudadana</div><div class="curso-desc">Herramientas para la acción cívica y la incidencia en políticas públicas.</div><div class="curso-meta"><span>7 módulos</span><span>10h</span><span>310 estudiantes</span></div><button style="width:100%;background:#EC4899;color:#fff;border:none;padding:10px;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;">Inscribirme</button></div></div>
-          </div>
-        </div>
-
-        <!-- TAB: FORO -->
+        <!-- Tab Comunidad -->
         <div id="tab-foro" style="display:none;">
-          <div class="dash-section-header">
-            <div class="dash-section-title">Comunidad</div>
-            <button style="background:var(--rojo);color:#fff;border:none;padding:9px 20px;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;">+ Nuevo tema</button>
-          </div>
-          <div class="foro-lista">
-            <div class="foro-item"><div class="foro-ico" style="background:#FEE2E2;">🔥</div><div><div class="foro-title">Estrategias para fortalecer JAL en municipios pequeños</div><div class="foro-meta">Por Luisa M. · hace 2h · 34 respuestas</div></div><div class="foro-hot">Popular</div></div>
-            <div class="foro-item"><div class="foro-ico" style="background:#DBEAFE;">💬</div><div><div class="foro-title">Recursos para el módulo 3 de Liderazgo Comunitario</div><div class="foro-meta">Por Carlos R. · hace 5h · 12 respuestas</div></div></div>
-            <div class="foro-item"><div class="foro-ico" style="background:#FEE2E2;">🔥</div><div><div class="foro-title">Experiencias de trabajo con comunidades en zonas rurales</div><div class="foro-meta">Por Daniela P. · hace 1 día · 58 respuestas</div></div><div class="foro-hot">Popular</div></div>
-            <div class="foro-item"><div class="foro-ico" style="background:#DCFCE7;">📌</div><div><div class="foro-title">Materiales de apoyo para el Diplomado de Gestión Social</div><div class="foro-meta">Por Equipo FUNDAMAS · hace 2 días · 9 respuestas</div></div></div>
-            <div class="foro-item"><div class="foro-ico" style="background:#FEF3C7;">💡</div><div><div class="foro-title">Ideas para proyectos de emprendimiento con adultos mayores</div><div class="foro-meta">Por Jorge A. · hace 3 días · 21 respuestas</div></div></div>
+          <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:20px;">Comunidad</h3>
+          <p style="color:var(--gris-texto);margin-bottom:20px;">Espacio de discusión y apoyo entre estudiantes y voluntarios.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="background:#fff;border:1px solid var(--gris-borde);padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;">
+              <div style="width:42px;height:42px;background:#FEE2E2;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">💬</div>
+              <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Presentación de nuevos voluntarios</div><div style="font-size:12px;color:var(--gris-texto);">23 respuestas · Última actividad hoy</div></div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--gris-borde);padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;">
+              <div style="width:42px;height:42px;background:#D1FAE5;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">📝</div>
+              <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Dudas sobre el Diplomado en Gestión Social</div><div style="font-size:12px;color:var(--gris-texto);">8 respuestas · Última actividad ayer</div></div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--gris-borde);padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;">
+              <div style="width:42px;height:42px;background:#DBEAFE;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🤝</div>
+              <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Experiencias en brigadas comunitarias</div><div style="font-size:12px;color:var(--gris-texto);">15 respuestas · Última actividad hace 3 días</div></div>
+            </div>
           </div>
         </div>
 
-        <!-- TAB: CERTIFICADOS -->
+        <!-- Tab Certificados -->
         <div id="tab-certs" style="display:none;">
-          <div class="dash-section-header">
-            <div class="dash-section-title">Mis certificados</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-            <div style="background:#fff;border-radius:16px;border:1px solid var(--gris-borde);padding:28px;position:relative;overflow:hidden;">
-              <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:var(--rojo-suave);"></div>
-              <div style="position:relative;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                  <div style="width:28px;height:28px;background:var(--rojo);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:900;font-family:var(--font-display);">FM</div>
-                  <span style="font-size:11px;font-weight:700;color:var(--rojo);letter-spacing:0.06em;text-transform:uppercase;">FUNDAMAS</span>
-                </div>
-                <div style="font-size:10px;color:var(--gris-texto);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Certificado de formación</div>
-                <div style="font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:4px;">Liderazgo Comunitario</div>
-                <div style="font-size:13px;color:var(--gris-texto);margin-bottom:16px;">Otorgado a María Amigos · Enero 2025</div>
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                  <span style="font-size:11px;color:var(--gris-texto);font-family:monospace;">FM-2025-0089</span>
-                  <button style="background:var(--rojo);color:#fff;border:none;padding:7px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font-body);">Descargar PDF</button>
-                </div>
-              </div>
+          <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;margin-bottom:20px;">Mis certificados</h3>
+          <div style="background:#fff;border:1px solid var(--gris-borde);padding:24px;display:flex;align-items:center;gap:20px;">
+            <div style="width:60px;height:60px;background:var(--rojo);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;">🎓</div>
+            <div style="flex:1;">
+              <div style="font-family:var(--font-display);font-size:16px;font-weight:700;">Liderazgo Comunitario – Nivel Básico</div>
+              <div style="font-size:13px;color:var(--gris-texto);">Completado el 15 de marzo, 2025</div>
             </div>
-            <div style="background:var(--gris-fondo);border-radius:16px;border:2px dashed var(--gris-borde);padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:180px;">
-              <div style="font-size:32px;margin-bottom:10px;">🏅</div>
-              <div style="font-weight:600;color:var(--gris-texto);margin-bottom:6px;">Completa un curso</div>
-              <div style="font-size:13px;color:var(--gris-texto);">para obtener tu próximo certificado</div>
-            </div>
+            <button style="background:var(--rojo);color:#fff;border:none;padding:10px 20px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;">Descargar</button>
           </div>
         </div>
 
-      </div><!-- /dash-content -->
-    </div><!-- /dash-main -->
-  </div><!-- /dashboard -->
-
-</div><!-- /plataforma -->
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- ════════════════════════════════════════
      JAVASCRIPT
 ════════════════════════════════════════ -->
 <script>
-  // Navbar scroll effect
+  // ── Navbar scroll ──
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
   });
 
-  function scrollToProgramas() {
-    document.getElementById('programas').scrollIntoView({ behavior: 'smooth' });
+  // ── Datos de programas ──
+  const programasData = {
+    'prog-brigadas': {
+      title: 'Brigadas Integrales de la <em>Solidaridad</em>',
+      content: `<h2>783 servicios prestados</h2><p>Atención a población vulnerable de estratos 1 y 2, con jornadas de servicios integrales que incluyen medicina, odontología, psicología, peluquería, cuidado personal, asesoría jurídica y entrega de medicamentos.</p><p>Cada brigada es una jornada completa donde profesionales de diversas disciplinas donan su tiempo y conocimiento para atender las necesidades más urgentes de la comunidad.</p><div class="stat-highlight"><div class="stat-item"><div class="stat-num">783</div><div class="stat-label">Servicios</div></div><div class="stat-item"><div class="stat-num">14.476</div><div class="stat-label">Histórico total</div></div></div>`
+    },
+    'prog-animal': {
+      title: 'Protección y Bienestar <em>Animal</em>',
+      content: `<h2>700 beneficiarios</h2><p>Jornadas en diferentes barrios para la sensibilización de la tenencia y adopción responsable, a través de atención veterinaria, desparasitación, vitaminización y entrega de alimento.</p><p>Creemos que el bienestar animal es parte integral del desarrollo comunitario y trabajamos para crear conciencia sobre la tenencia responsable.</p><div class="stat-highlight"><div class="stat-item"><div class="stat-num">700</div><div class="stat-label">Animales atendidos</div></div><div class="stat-item"><div class="stat-num">6.480</div><div class="stat-label">Histórico total</div></div></div>`
+    },
+    'prog-late': {
+      title: 'LATE – Atención a Población <em>Vulnerable</em>',
+      content: `<h2>445 personas beneficiadas</h2><p>Atención a población vulnerable como habitantes de calle, adulto mayor y niños en estado de abandono; proporcionando alimentación, vestido y programas de prevención en seguridad y salubridad, además de fortalecer el vínculo comunitario.</p><div class="stat-highlight"><div class="stat-item"><div class="stat-num">445</div><div class="stat-label">Personas</div></div><div class="stat-item"><div class="stat-num">4.119</div><div class="stat-label">Histórico total</div></div></div>`
+    },
+    'prog-comunarte': {
+      title: '<em>ComunArte</em>',
+      content: `<h2>820 beneficiarios</h2><p>Actividades orientadas a fortalecer el arte, la cultura, la educación y recreación, con niños y jóvenes en jornadas de cine infantil, ciclo de cuenteros, pintura, teatro y música.</p><p>El arte es una herramienta poderosa para la transformación social y el desarrollo integral de la infancia.</p><div class="stat-highlight"><div class="stat-item"><div class="stat-num">820</div><div class="stat-label">Beneficiarios</div></div><div class="stat-item"><div class="stat-num">3.995</div><div class="stat-label">Histórico total</div></div></div>`
+    },
+    'prog-mercaton': {
+      title: 'Mercatón <em>Navideño</em>',
+      content: `<h2>185 familias beneficiadas</h2><p>Programa orientado a la recolección de alimentos no perecederos, para donar en temporada navideña mercados a familias en sectores vulnerables de estratos 1 y 2, en zona urbana y rural, incluyendo vestido y juguetes para los niños.</p><div class="stat-highlight"><div class="stat-item"><div class="stat-num">185</div><div class="stat-label">Familias</div></div><div class="stat-item"><div class="stat-num">279</div><div class="stat-label">Ropa y calzado</div></div></div>`
+    },
+    'prog-acciones': {
+      title: 'Acciones <em>Solidarias</em>',
+      content: `<h2>1.655 personas beneficiadas</h2><p>Orientado a fortalecer la cooperación interinstitucional, la solidaridad y el apoyo a programas, eventos y actividades de otras organizaciones, así como el apalancamiento de pequeñas acciones individuales en procura de un beneficio común.</p><div class="stat-highlight"><div class="stat-item"><div class="stat-num">1.655</div><div class="stat-label">Personas</div></div></div>`
+    },
+    'prog-semillero': {
+      title: 'Semillero de Liderazgo <em>Juvenil</em>',
+      content: `<h2>21 jóvenes beneficiados · 28 encuentros</h2><p>Brindar herramientas para el liderazgo y servicio social; inculcando la importancia de asumir con criterio las diferentes problemáticas que se puedan presentar en la vida, la familia y la comunidad en general.</p><p>Esperamos plantar semillas desde la labor social para fortalecer la formación de líderes de impacto en la sociedad.</p><div class="stat-highlight"><div class="stat-item"><div class="stat-num">21</div><div class="stat-label">Jóvenes</div></div><div class="stat-item"><div class="stat-num">28</div><div class="stat-label">Encuentros</div></div></div>`
+    },
+    'prog-padrinos': {
+      title: 'Padrinos de la <em>Navidad</em>',
+      content: `<h2>427 niños apadrinados</h2><p>Programa enfocado en la atención a niños entre 1 a 12 años de edad en situación de vulnerabilidad y en situación especial; previamente identificados.</p><div class="stat-highlight"><div class="stat-item"><div class="stat-num">427</div><div class="stat-label">Niños apadrinados</div></div><div class="stat-item"><div class="stat-num">512</div><div class="stat-label">Juguetes</div></div><div class="stat-item"><div class="stat-num">854</div><div class="stat-label">Prendas de vestir</div></div></div>`
+    }
+  };
+
+  // ── Navegación ──
+  function hideAll() {
+    document.getElementById('landing').style.display = 'none';
+    document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+    document.getElementById('plataforma').classList.remove('active');
   }
 
-  // ── Navegación entre páginas ──
   function showLanding() {
+    hideAll();
     document.getElementById('landing').style.display = 'block';
-    document.getElementById('plataforma').classList.remove('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function showPage(pageId) {
+    hideAll();
+    // Si es un programa
+    if (pageId.startsWith('prog-') && programasData[pageId]) {
+      const data = programasData[pageId];
+      document.getElementById('prog-detail-title').innerHTML = data.title;
+      document.getElementById('prog-detail-content').innerHTML = data.content;
+      document.getElementById('page-programa-detalle').classList.add('active');
+    } else {
+      const el = document.getElementById('page-' + pageId);
+      if (el) el.classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goToProgramas() {
+    // Si estamos en una page-view, volver al landing primero
+    hideAll();
+    document.getElementById('landing').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('programas').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
   function showEscuela() {
-    document.getElementById('landing').style.display = 'none';
+    hideAll();
     document.getElementById('plataforma').classList.add('active');
     document.getElementById('login-screen').style.display = 'grid';
     document.getElementById('dashboard').classList.remove('active');
@@ -1413,17 +1554,14 @@
     document.getElementById('dashboard').classList.add('active');
   }
 
-  // ── Tabs del dashboard ──
+  // ── Dashboard tabs ──
   function setTab(el, tabId) {
-    // deactivate all nav items
     document.querySelectorAll('.dash-nav-item').forEach(n => n.classList.remove('active'));
     el.classList.add('active');
-    // hide all tabs
     ['tab-inicio','tab-cursos','tab-catalogo','tab-foro','tab-certs'].forEach(id => {
       document.getElementById(id).style.display = 'none';
     });
     document.getElementById(tabId).style.display = 'block';
-    // update topbar title
     const labels = {
       'tab-inicio': 'Panel de inicio',
       'tab-cursos': 'Mis cursos',
@@ -1441,6 +1579,24 @@
     });
     document.getElementById(tabId).style.display = 'block';
     document.getElementById('tab-title').textContent = label;
+  }
+
+  // ── Mobile menu (básico) ──
+  function toggleMobileMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.display = 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '70px';
+      links.style.right = '20px';
+      links.style.background = '#fff';
+      links.style.padding = '16px';
+      links.style.boxShadow = 'var(--shadow-lg)';
+      links.style.border = '1px solid var(--gris-borde)';
+    }
   }
 </script>
 
