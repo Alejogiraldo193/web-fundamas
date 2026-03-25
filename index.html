@@ -53,10 +53,10 @@
        NAVBAR – Logo centrado, menú a la derecha
     ══════════════════════════════════════════ */
     .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      position: absolute; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(255,255,255,0.97);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      border-bottom: none;
       transition: box-shadow var(--transition);
     }
     .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
@@ -64,7 +64,7 @@
    .nav-inner {
   width: 100%; margin: 0;
   display: flex; align-items: center;
-  padding: 0 40px; height: 70px;
+  padding: 0 40px 0 0;
   position: relative;
 }
 
@@ -793,13 +793,17 @@
     <div class="nav-inner">
 
       <!-- Logo centrado -->
-      <div class="nav-logo" onclick="showLanding()">
-  <div style="background: var(--rojo); padding: 20px 20px; line-height: 1;">
-    <div style="font-family: var(--font-body); font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7);">Fundación</div>
-    <div style="font-family: var(--font-display); font-size: 22px; font-weight: 900; color: #fff; letter-spacing: 0.02em; line-height: 1.1;">AMIGOS SOLIDARIOS</div>
+     <div class="nav-logo" onclick="showLanding()">
+  <div style="background: var(--rojo); height: 70px; display: flex; align-items: center; padding: 0 65px 0 25px;">
+    <img src="img/fundamas-banner.png" alt="FUNDAMÁS" style="height: 45px; width: auto;">
   </div>
 </div>
 
+<!-- Carta fundadores -->
+      <button class="nav-btn" onclick="toggleCarta()" style="font-size: 14px; font-weight: 500; color: var(--gris-texto); letter-spacing: 0.0em; margin-left: 10px; align-self: flex-end; margin-bottom: 14px;">
+        Carta de los Fundadores
+      </button>
+      
       <!-- Menú derecha -->
       <ul class="nav-links">
         <!-- Acerca de nosotros -->
@@ -833,6 +837,14 @@
       </button>
     </div>
   </nav>
+
+  <!-- Ventana Carta de los Fundadores -->
+  <div id="carta-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:2000; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center;" onclick="if(event.target===this)toggleCarta()">
+   <div style="background:#fff; max-width:900px; width:90%; max-height:90vh; overflow-y:auto; position:relative;">
+      <button onclick="toggleCarta()" style="position:absolute; top:15px; right:20px; background:rgba(0,0,0,0.5); border:none; font-size:20px; cursor:pointer; color:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;">✕</button>
+      <img src="img/carta-fundadores.jpg" alt="Carta de los Fundadores" style="width:100%; display:block;">
+    </div> 
+  </div>
 
   <!-- ═══ HERO ═══ -->
   <section class="hero">
@@ -1591,6 +1603,15 @@
     });
     document.getElementById(tabId).style.display = 'block';
     document.getElementById('tab-title').textContent = label;
+  }
+
+function toggleCarta() {
+    var carta = document.getElementById('carta-overlay');
+    if (carta.style.display === 'flex') {
+      carta.style.display = 'none';
+    } else {
+      carta.style.display = 'flex';
+    }
   }
 
   // ── Mobile menu (básico) ──
