@@ -440,15 +440,16 @@
     /* ══════════════════════════════════════════
        VENTANAS INTERNAS (Quiénes somos, Historias, Programa detalle)
     ══════════════════════════════════════════ */
-    .page-view {
+  .page-view {
   display: none;
   padding-top: 70px;
   min-height: 100vh;
   background: var(--blanco);
-  position: fixed;
+  position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 900;
   overflow-y: auto;
+  width: 100%;
 }
     .page-view.active { display: block; }
 
@@ -462,7 +463,7 @@
     .page-hero .section-desc { color: rgba(255,255,255,0.6); margin: 0 auto; }
 
     .page-content {
-      max-width: 800px; margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
       padding: 60px 40px;
     }
     .page-content h2 {
@@ -1158,137 +1159,138 @@
     <p>La Fundación Amigos Solidarios – FUNDAMÁS suma la voluntad de profesionales, líderes comunitarios, estudiantes y comunidad en general, con el fin de consolidar un voluntariado de alto impacto que transforme realidades.</p>
 
 <!-- Timeline Historia -->
-    <div style="margin: 50px 0; position: relative;">
+   
+<div style="margin: 50px -150px; position: relative;">
       <!-- Línea central -->
       <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: var(--rojo); transform: translateX(-50%);"></div>
 
       <!-- 2013 - Izquierda -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; text-align: right; padding-right: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2013</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Nace FUNDAMÁS</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Un grupo de amigos comprometidos con el cambio social da vida a la Fundación Amigos Solidarios.</p>
+          <div style="font-family: var(--font-display); font-size: 42px; font-weight: 900; color: var(--rojo);">2013</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Nace FUNDAMÁS</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Un grupo de amigos comprometidos con el cambio social da vida a la Fundación Amigos Solidarios.</p>
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <img src="img/timeline-01.jpg" alt="2013" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-01.jpg" alt="2013" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
       </div>
 
       <!-- 2014 - Derecha -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; padding-right: 40px;">
-          <img src="img/timeline-02.jpg" alt="2014" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-02.jpg" alt="2014" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2014</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Primeras brigadas</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Primeras brigadas integrales de la solidaridad en comunidades vulnerables de estratos 1 y 2.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2014</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Primeras brigadas</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Primeras brigadas integrales de la solidaridad en comunidades vulnerables de estratos 1 y 2.</p>
         </div>
       </div>
 
       <!-- 2015 - Izquierda -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; text-align: right; padding-right: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2015</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Protección Animal</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Lanzamiento del programa de protección y bienestar animal con jornadas de atención veterinaria.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2015</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Protección Animal</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Lanzamiento del programa de protección y bienestar animal con jornadas de atención veterinaria.</p>
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <img src="img/timeline-03.jpg" alt="2015" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-03.jpg" alt="2015" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
       </div>
 
       <!-- 2016 - Derecha -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; padding-right: 40px;">
-          <img src="img/timeline-04.jpg" alt="2016" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-04.jpg" alt="2016" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2016</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">ComunArte</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Nace ComunArte: arte, cultura, educación y recreación para niños y jóvenes.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2016</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">ComunArte</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Nace ComunArte: arte, cultura, educación y recreación para niños y jóvenes.</p>
         </div>
       </div>
 
       <!-- 2017 - Izquierda -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; text-align: right; padding-right: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2017</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Mercatón Navideño</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Primer Mercatón Navideño: alimentos, vestido y juguetes para familias vulnerables.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2017</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Mercatón Navideño</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Primer Mercatón Navideño: alimentos, vestido y juguetes para familias vulnerables.</p>
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <img src="img/timeline-05.jpg" alt="2017" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-05.jpg" alt="2017" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
       </div>
 
       <!-- 2018 - Derecha -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; padding-right: 40px;">
-          <img src="img/timeline-06.jpg" alt="2018" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-06.jpg" alt="2018" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2018</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Programa LATE</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Creación del programa LATE para atención a habitantes de calle y adulto mayor.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2018</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Programa LATE</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Creación del programa LATE para atención a habitantes de calle y adulto mayor.</p>
         </div>
       </div>
 
       <!-- 2019 - Izquierda -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; text-align: right; padding-right: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2019</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Semillero Juvenil</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Lanzamiento del Semillero de Liderazgo Juvenil con 21 jóvenes en formación.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2019</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Semillero Juvenil</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Lanzamiento del Semillero de Liderazgo Juvenil con 21 jóvenes en formación.</p>
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <img src="img/timeline-07.jpg" alt="2019" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-07.jpg" alt="2019" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
       </div>
 
       <!-- 2020 - Derecha -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; padding-right: 40px;">
-          <img src="img/timeline-08.jpg" alt="2020" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-08.jpg" alt="2020" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2020</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Pandemia y resiliencia</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Adaptación durante la pandemia: apoyo alimentario y brigadas de bioseguridad.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2020</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Pandemia y resiliencia</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Adaptación durante la pandemia: apoyo alimentario y brigadas de bioseguridad.</p>
         </div>
       </div>
 
       <!-- 2023 - Izquierda -->
       <div style="display: flex; align-items: flex-start; margin-bottom: 60px; position: relative;">
         <div style="width: 48%; text-align: right; padding-right: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2023</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Escuela de Liderazgo</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Inauguración de la Escuela de Liderazgo Social con 400 voluntarios formados.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2023</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">Escuela de Liderazgo</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Inauguración de la Escuela de Liderazgo Social con 400 voluntarios formados.</p>
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <img src="img/timeline-09.jpg" alt="2023" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-09.jpg" alt="2023" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
       </div>
 
       <!-- 2025 - Derecha -->
       <div style="display: flex; align-items: flex-start; position: relative;">
         <div style="width: 48%; padding-right: 40px;">
-          <img src="img/timeline-10.jpg" alt="2025" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
+          <img src="img/timeline-10.jpg" alt="2025" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;" onerror="this.style.background='var(--gris-fondo)'; this.style.minHeight='200px';">
         </div>
         <div style="position: absolute; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: var(--rojo); border-radius: 50%; border: 4px solid #fff; z-index: 1;"></div>
         <div style="width: 48%; padding-left: 40px;">
-          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--rojo);">2025</div>
-          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">12 años de impacto</div>
-          <p style="font-size: 14px; color: var(--gris-texto); line-height: 1.7;">Más de 58.621 servicios prestados a la comunidad. El legado continúa.</p>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f;">2025</div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #1e4f6f; margin-bottom: 8px;">12 años de impacto</div>
+          <p style="font-size: 16px; color: var(--gris-texto); line-height: 1.;">Más de 58.621 servicios prestados a la comunidad. El legado continúa.</p>
         </div>
       </div>
 
